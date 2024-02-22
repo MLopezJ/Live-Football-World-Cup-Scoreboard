@@ -47,7 +47,7 @@ expected: [ ]
 ```
 
 # Application decision records
-See [./appdrs](./appdrs/README.md)
+See [./appdrs](./appdr/README.md)
 
 # Architecture decision records
 See [./appdrs](./adr/README.md)
