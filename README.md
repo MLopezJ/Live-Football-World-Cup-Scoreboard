@@ -48,3 +48,6 @@ expected: [ ]
 
 # Application decision records
 See [./appdrs](./appdrs/README.md)
+
+# Architecture decision records
+See [./appdrs](./adr/README.md)
