@@ -1,0 +1,39 @@
+{
+  "name": "live-football-world-cup-scoreboard",
+  "version": "0.0.0-development",
+  "description": "A Live Football World Cup Scoreboard library that shows all the ongoing matches and their scores.",
+  "main": "index.js",
+  "scripts": {
+    "test": "find ./ -type f -name '*.spec.ts' -not -path './node_modules/*' -print | xargs npx tsx --no-warnings --test",
+    "prepare": "husky install",
+    "prepublishOnly": "npx swc -d dist ./src --copy-files"
+  },
+  "type": "module",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./export.js",
+      "node": "./export.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MLopezJ/Live-Football-World-Cup-Scoreboard.git"
+  },
+  "keywords": [
+    "node.js",
+    "TDD",
+    "OOP",
+    "TypeScript"
+  ],
+  "author": "Mauro Lopez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MLopezJ/Live-Football-World-Cup-Scoreboard/issues"
+  },
+  "homepage": "https://github.com/MLopezJ/Live-Football-World-Cup-Scoreboard#readme",
+  "engines": {
+    "node": ">=20",
+    "npm": ">=9"
+  }
+}
