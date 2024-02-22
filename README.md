@@ -50,4 +50,4 @@ expected: [ ]
 See [./appdrs](./appdr/README.md)
 
 # Architecture decision records
-See [./appdrs](./adr/README.md)
+See [./adr](./adr/README.md)
