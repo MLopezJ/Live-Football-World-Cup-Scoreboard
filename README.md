@@ -45,3 +45,6 @@ CRC-NOR
 expected: [ ]
 
 ```
+
+# Application decision records
+See [./appdrs](./appdrs/README.md)
