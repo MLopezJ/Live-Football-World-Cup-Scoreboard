@@ -1,13 +1,18 @@
 # Live Football World Cup Scoreboard
+![Unit Tests](https://github.com/MLopezJ/Live-Football-World-Cup-Scoreboard/actions/workflows/test.yml/badge.svg)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
 A Live Football World Cup Scoreboard library that shows all the ongoing matches and their scores.
 
 ## Installation
-> TODO: add command 
+```
+npm ci 
+```
 
 ## Running tests
-> TODO: add command 
+```
+npm test
+```
 
 ## Operations supported 
 
