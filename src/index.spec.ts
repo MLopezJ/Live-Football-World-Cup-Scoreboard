@@ -40,3 +40,23 @@ void describe(`start a new match`, () => {
    assert.equal(isMatchInLiveScoreboard, true)
   });
 });
+
+void describe(`update score`, () => {
+	it(`should update score of an existing match`, () => {
+		// create tournament
+		const worldCup = new Tournament("Fifa World Cup 2024");
+
+		// add teams to the tournament
+		const crc = worldCup.addTeam({ id: "CRC" });
+		const nor = worldCup.addTeam({ id: "NOR" });
+	
+		// create a match
+		const match = worldCup.addMatch(crc, nor);
+
+		// goal of CR
+
+		// check score
+		assert.equal(match.localScore, 1);
+		assert.equal(match.visitorScore, 0);
+	})
+})
