@@ -23,4 +23,22 @@ void describe(`start a new match`, () => {
     assert.equal(match.localScore, 0);
     assert.equal(match.visitorScore, 0);
   });
+
+  it(`should add the new match to the live scoreboard`, async () => {
+    // create tournament
+    const worldCup = new Tournament("Fifa World Cup 2024");
+
+    // add teams to the tournament
+    const crc = worldCup.addTeam({ id: "CRC" });
+    const nor = worldCup.addTeam({ id: "NOR" });
+
+    // create a match
+    const match = worldCup.addMatch(crc, nor);
+
+   const liveScoreboard = worldCup.getLiveScoreboard()
+
+   const isMatchInLiveScoreboard = liveScoreboard.some(liveMatch => liveMatch.id ===  match.id)
+
+   assert.equal(isMatchInLiveScoreboard, true)
+  });
 });

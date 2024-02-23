@@ -25,7 +25,7 @@ export class Tournament {
     return team;
   };
 
-  public addMatch = (localTeam: Team, visitorTeam: Team) => {
+  public addMatch = (localTeam: Team, visitorTeam: Team): Match => {
     const match = {
       id: `${localTeam.id}-${visitorTeam.id}`,
       local: localTeam,
@@ -36,6 +36,7 @@ export class Tournament {
       status: "active" as MatchStatus,
     };
     this.matches.push(match);
+    return match
   };
 
   public getMatch = (matchId: string) => {
