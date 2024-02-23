@@ -12,9 +12,7 @@ void describe(`start a new match`, () => {
     const nor = worldCup.addTeam({ id: "NOR" });
 
     // create a match
-    worldCup.addMatch(crc, nor);
-
-    const match = worldCup.getMatch(`${crc.id}-${nor.id}`);
+    const match = worldCup.addMatch(crc, nor);
 
     // check id of the match
     assert.equal(match?.id, "CRC-NOR");
