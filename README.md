@@ -48,6 +48,9 @@ expected: [ ]
 
 ```
 
+# UML class diagram
+![UML class diagram](./img/UML-class-diagram.png)
+
 # Application decision records
 See [./appdrs](./appdr/README.md)
 
