@@ -15,11 +15,12 @@ void describe(`start a new match`, () => {
     const match = worldCup.addMatch(crc, nor);
 
     // check id of the match
-    assert.equal(match?.id, "CRC-NOR");
+    assert.equal(match?.getId(), "CRC-NOR");
 
+	const score = match.getScore()
     // check score
-    assert.equal(match.localScore, 0);
-    assert.equal(match.visitorScore, 0);
+    assert.equal(score.local, 0);
+    assert.equal(score.visitor, 0);
   });
 
   it(`should add the new match to the live scoreboard`, async () => {
@@ -35,7 +36,7 @@ void describe(`start a new match`, () => {
 
    const liveScoreboard = worldCup.getLiveScoreboard()
 
-   const isMatchInLiveScoreboard = liveScoreboard.some(liveMatch => liveMatch.id ===  match.id)
+   const isMatchInLiveScoreboard = liveScoreboard.some(liveMatch => liveMatch.getId() ===  match.getId())
 
    assert.equal(isMatchInLiveScoreboard, true)
   });
@@ -52,11 +53,25 @@ void describe(`update score`, () => {
 	
 		// create a match
 		const match = worldCup.addMatch(crc, nor);
+		
+		// check initial score
+		assert.equal(match.getScore().local, 0);
+		assert.equal(match.getScore().visitor, 0);
 
-		// goal of CR
+		// goal of local (CRC)
+		match.setGoal(1,0)
 
-		// check score
-		assert.equal(match.localScore, 1);
-		assert.equal(match.visitorScore, 0);
+		// check updated score
+		assert.equal(match.getScore().local, 1);
+		assert.equal(match.getScore().visitor, 0);
+
+		// goal of visitor (NOR)
+		match.setGoal(0,1)
+
+		// check updated score
+		assert.equal(match.getScore().local, 1);
+		assert.equal(match.getScore().visitor, 1);
+
+		
 	})
 })

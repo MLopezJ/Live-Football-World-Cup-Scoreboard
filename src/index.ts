@@ -1,15 +1,4 @@
-type Team = { id: string };
-
-type MatchStatus = "active" | "finish";
-type Match = {
-  id: string;
-  local: Team;
-  localScore: number;
-  visitor: Team;
-  visitorScore: number;
-  startTime: Date;
-  status: MatchStatus;
-};
+import { Match, type Team } from "./Match";
 
 export class Tournament {
   private name: string;
@@ -26,26 +15,19 @@ export class Tournament {
   };
 
   public addMatch = (localTeam: Team, visitorTeam: Team): Match => {
-    const match = {
-      id: `${localTeam.id}-${visitorTeam.id}`,
-      local: localTeam,
-      localScore: 0,
-      visitor: visitorTeam,
-      visitorScore: 0,
-      startTime: new Date(),
-      status: "active" as MatchStatus,
-    };
+    const match = new Match(localTeam, visitorTeam);
+
     this.matches.push(match);
-    return match
+    return match;
   };
 
   public getMatch = (matchId: string) => {
-    const match = this.matches.filter((match) => match.id === matchId);
+    const match = this.matches.filter((match) => match.getId() === matchId);
     return match[0];
   };
 
   public getLiveScoreboard = () =>
-    this.matches.filter((match) => match.status === "active");
+    this.matches.filter((match) => match.getStatus() === "active");
 
   public getName = () => this.name;
 }
