@@ -59,7 +59,7 @@ export class Tournament {
       .filter((match) => match.getStatus() === "active")
       .sort(
         (match1, match2) =>
-          match1.getTotalAmountOfGoals() - match2.getTotalAmountOfGoals()
+          match1.getTotalAmountOfGoals() - match2.getTotalAmountOfGoals(),
       )
       .reverse()
       .map((match) => ({ matchId: match.getId(), result: match.printScore() }));

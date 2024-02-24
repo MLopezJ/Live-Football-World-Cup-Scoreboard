@@ -4,8 +4,8 @@ The [ISO 3166-1 alfa-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) standa
 
 This decision allow to standardize the format of the data entry. Below are some examples of the country name and the `ISO 3166-1 alfa-3` version
 
-| Country name | ISO 3166-1 alfa-3 | 
-| ---          | ---               |
+| Country name | ISO 3166-1 alfa-3 |
+| ------------ | ----------------- |
 | Costa Rica   | CRC               |
 | Norway       | NOR               |
 | New Zealand  | NZL               |

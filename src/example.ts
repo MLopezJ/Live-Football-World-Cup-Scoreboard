@@ -12,7 +12,7 @@ const printLiveScoreboard = (liveScoreboard: liveScoreboard[]) => {
 
 // create tournament
 const worldCup = new Tournament("Fifa World Cup 2024");
-console.log(`-- Tournament ${worldCup.getName()}  --\n`)
+console.log(`-- Tournament ${worldCup.getName()}  --\n`);
 
 /**
  * Teams in the tournament:
@@ -38,7 +38,7 @@ const ITA = worldCup.addTeam(new Team("ITA"));
 const ARG = worldCup.addTeam(new Team("ARG"));
 const AUS = worldCup.addTeam(new Team("AUS"));
 
-console.log('-- starting matches   --\n')
+console.log("-- starting matches   --\n");
 /**
  * Matches:
  * - MEX vs CAN
@@ -61,7 +61,9 @@ if (ESP_BRA) ESP_BRA.setGoal(10, 2);
 if (DEU_FRA) DEU_FRA.setGoal(2, 2);
 if (URY_ITA) URY_ITA.setGoal(6, 6);
 if (ARG_AUS) ARG_AUS.setGoal(3, 1);
-console.log("-- Scores are beign updated. Check src/example.ts to get more information --\n");
+console.log(
+  "-- Scores are beign updated. Check src/example.ts to get more information --\n",
+);
 
 printLiveScoreboard(worldCup.getLiveScoreboard());
 
