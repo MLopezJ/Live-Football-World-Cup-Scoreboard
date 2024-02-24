@@ -144,7 +144,7 @@ void describe(`finish match`, () => {
 });
 
 void describe(`Get a summary of matches in progress`, () => {
-  it(`should return matches in progress sorted in ascending order by match score`, () => {
+  it(`should return matches sorted in ascending order by match score`, () => {
     // create tournament
     const worldCup = new Tournament("Fifa World Cup 2024");
 
