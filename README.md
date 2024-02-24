@@ -26,6 +26,8 @@ npm test
 | Finish match currently in progress   | It is possible to finish a match that is currently in progress. By this action, the match is removed from the scoreboard.                                                                                                                                                                                                                                                   |
 | Get a summary of matches in progress | It is possible to get a summary of the matches that are in progress. The information is orderer by total score, presenting first the match with more goals. If matches have same amount of goals, the most recently started is returned first. This operation can be implementing any time as far as there is a scoreboard. Only matches that are in progress are returned. |
 
+See [./src/index.spec.ts](./src/index.spec.ts) for more information.
+
 # Example of usage
 
 ```TypeScript
