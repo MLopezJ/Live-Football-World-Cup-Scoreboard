@@ -9,14 +9,14 @@ void describe(`start a new match`, () => {
     const worldCup = new Tournament("Fifa World Cup 2024");
 
     // add teams to the tournament
-    const crc = worldCup.addTeam({ id: "CRC" });
-    const nor = worldCup.addTeam({ id: "NOR" });
+    const local = worldCup.addTeam({ id: "CRC" });
+    const visitor = worldCup.addTeam({ id: "NOR" });
 
     // create a match
-    const match = worldCup.addMatch(crc, nor);
+    const match = worldCup.addMatch(local, visitor);
 
     // check id of the match
-    assert.equal(match?.getId(), "CRC-NOR");
+    assert.equal(match?.getId(), `${local.id}-${visitor.id}`); // expected:  "CRC-NOR"
 
     const score = match.getScore();
     // check score
@@ -29,11 +29,11 @@ void describe(`start a new match`, () => {
     const worldCup = new Tournament("Fifa World Cup 2024");
 
     // add teams to the tournament
-    const crc = worldCup.addTeam({ id: "CRC" });
-    const nor = worldCup.addTeam({ id: "NOR" });
+    const local = worldCup.addTeam({ id: "CRC" });
+    const visitor = worldCup.addTeam({ id: "NOR" });
 
     // create a match
-    const match = worldCup.addMatch(crc, nor);
+    const match = worldCup.addMatch(local, visitor);
 
     const liveScoreboard = worldCup.getLiveScoreboard();
 
@@ -51,11 +51,11 @@ void describe(`update score`, () => {
     const worldCup = new Tournament("Fifa World Cup 2024");
 
     // add teams to the tournament
-    const crc = worldCup.addTeam({ id: "CRC" });
-    const nor = worldCup.addTeam({ id: "NOR" });
+    const local = worldCup.addTeam({ id: "CRC" });
+    const visitor = worldCup.addTeam({ id: "NOR" });
 
     // create a match
-    const match = worldCup.addMatch(crc, nor);
+    const match = worldCup.addMatch(local, visitor);
 
     // check initial score
     assert.equal(match.getScore().local, 0);
@@ -83,14 +83,14 @@ void describe(`finish match`, () => {
     const worldCup = new Tournament("Fifa World Cup 2024");
 
     // add teams to the tournament
-    const crc = worldCup.addTeam({ id: "CRC" });
-    const nor = worldCup.addTeam({ id: "NOR" });
+    const local = worldCup.addTeam({ id: "CRC" });
+    const visitor = worldCup.addTeam({ id: "NOR" });
 
     // create the match
-    const match = worldCup.addMatch(crc, nor);
+    const match = worldCup.addMatch(local, visitor);
 
     // finish the match
-    const finishedMatch = worldCup.finishMatch(`${crc.id}-${nor.id}`);
+    const finishedMatch = worldCup.finishMatch(`${local.id}-${visitor.id}`);
 
     // check finished match status
     if (finishedMatch !== undefined) {
@@ -99,7 +99,7 @@ void describe(`finish match`, () => {
       // if finishedMatch is undefined means that the match id is not found, and is not possible to finish it. Because of that, it should fail
       assert.equal(
         (finishedMatch as unknown as Match).getId(),
-        `${crc.id}-${nor.id}`
+        `${local.id}-${visitor.id}`
       );
     }
 
