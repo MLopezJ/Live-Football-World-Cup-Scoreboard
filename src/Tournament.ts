@@ -40,10 +40,11 @@ export class Tournament {
     return undefined;
   };
 
-  public getMatch = (matchId: string) => {
-    const match = this.matches.filter((match) => match.getId() === matchId);
-    return match[0];
-  };
+  /**
+   * Find match by id in list of matches
+   */
+  public getMatch = (matchId: string): Match | undefined =>
+    this.matches.find((match) => match.getId() === matchId);
 
   /**
    * return matches following the next rules:
