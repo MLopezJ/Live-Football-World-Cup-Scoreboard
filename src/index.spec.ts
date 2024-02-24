@@ -164,4 +164,27 @@ void describe(`Get a summary of matches in progress`, () => {
     // first element of the live scoreboard should be the match BRAvsARG
     assert.equal(worldCup.getLiveScoreboard()[0]?.getId(), BRAvsARG.getId());
   });
+  
+
+  it(`should return matches ordered by the most recently started if score is the same`, () => {
+    // create tournament
+    const worldCup = new Tournament("Fifa World Cup 2024");
+
+    // add teams to the tournament
+    const crc = worldCup.addTeam({ id: "CRC" }); // Costa Rica
+    const nor = worldCup.addTeam({ id: "NOR" }); // Norway
+    const bra = worldCup.addTeam({ id: "BRA" }); // Brazil
+    const arg = worldCup.addTeam({ id: "ARG" }); // Argentina
+    const ita = worldCup.addTeam({ id: "ITA" }); // Italy
+    const esp = worldCup.addTeam({ id: "ESP" }); // Spain
+
+    // create the match           local - visitor
+    worldCup.addMatch(crc, nor); // CRC vs NOR
+    worldCup.addMatch(bra, arg); // BRA vs ARG
+    worldCup.addMatch(ita, esp); // ITA vs ESP
+
+    // first element of the live scoreboard should be ITA-ESP
+	assert.equal(worldCup.getLiveScoreboard()[0]?.getId(), 'ITA-ESP');
+
+  });
 });
