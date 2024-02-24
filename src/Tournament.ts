@@ -1,6 +1,8 @@
 import { Match } from "./Match";
 import type { Team } from "./Team";
 
+export type liveScoreboard = { matchId: string; result: string };
+
 export class Tournament {
   private name: string;
   private teams: Team[] = [];
@@ -52,14 +54,15 @@ export class Tournament {
    * - return the matches sorted in ascending order by match score
    * - return matches ordered by the most recently started if score is the same
    */
-  public getLiveScoreboard = () =>
+  public getLiveScoreboard = (): liveScoreboard[] =>
     this.matches
       .filter((match) => match.getStatus() === "active")
       .sort(
         (match1, match2) =>
           match1.getTotalAmountOfGoals() - match2.getTotalAmountOfGoals()
       )
-      .reverse();
+      .reverse()
+      .map((match) => ({ matchId: match.getId(), result: match.printScore() }));
 
   public getName = () => this.name;
 }

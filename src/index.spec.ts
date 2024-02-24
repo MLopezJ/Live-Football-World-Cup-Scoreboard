@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { Tournament } from "./Tournament";
+import { Tournament, type liveScoreboard } from "./Tournament";
 import type { Match } from "./Match";
 import { Team } from "./Team";
 
@@ -39,7 +39,7 @@ void describe(`start a new match`, () => {
     const liveScoreboard = worldCup.getLiveScoreboard();
 
     const isMatchInLiveScoreboard = liveScoreboard.some(
-      (liveMatch) => liveMatch.getId() === match?.getId()
+      (liveMatch) => liveMatch.matchId === match?.getId()
     );
 
     assert.equal(isMatchInLiveScoreboard, true);
@@ -109,11 +109,11 @@ void describe(`finish match`, () => {
   it(`should not display match in live scoreboard when match finished`, () => {
     // Check if match id is in list
     const isMatchInLiveScoreboard = (
-      liveScoreboard: Match[],
+      liveScoreboard: liveScoreboard[],
       matchId: string | undefined
     ) => {
       if (matchId === undefined) return false;
-      return liveScoreboard.some((liveMatch) => liveMatch.getId() === matchId);
+      return liveScoreboard.some((liveMatch) => liveMatch.matchId === matchId);
     };
 
     // create tournament
@@ -163,7 +163,7 @@ void describe(`Get a summary of matches in progress`, () => {
 
     // first element of the live scoreboard should not be the match BRAvsARG
     assert.notEqual(
-      worldCup.getLiveScoreboard()[0]?.getId(),
+      worldCup.getLiveScoreboard()[0]?.matchId,
       BRAvsARG?.getId()
     );
 
@@ -171,7 +171,7 @@ void describe(`Get a summary of matches in progress`, () => {
     BRAvsARG?.setGoal(4, 0);
 
     // first element of the live scoreboard should be the match BRAvsARG
-    assert.equal(worldCup.getLiveScoreboard()[0]?.getId(), BRAvsARG?.getId());
+    assert.equal(worldCup.getLiveScoreboard()[0]?.matchId, BRAvsARG?.getId());
   });
 
   it(`should return matches ordered by the most recently started if score is the same`, () => {
@@ -192,6 +192,6 @@ void describe(`Get a summary of matches in progress`, () => {
     worldCup.addMatch(ita, esp); // ITA vs ESP
 
     // first element of the live scoreboard should be ITA-ESP
-    assert.equal(worldCup.getLiveScoreboard()[0]?.getId(), "ITA-ESP");
+    assert.equal(worldCup.getLiveScoreboard()[0]?.matchId, "ITA-ESP");
   });
 });

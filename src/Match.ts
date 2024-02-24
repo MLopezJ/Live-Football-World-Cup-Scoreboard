@@ -43,6 +43,11 @@ export class Match {
     visitor: this.visitorScore,
   });
 
+  public printScore = () =>
+    `${this.local.getId()} ${this.localScore} - ${this.visitor.getId()} ${
+      this.visitorScore
+    }`;
+
   /**
    * Whole numbers are a set of numbers including all natural numbers and 0.
    * They are a part of real numbers that do not include fractions, decimals, or negative numbers.
