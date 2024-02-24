@@ -15,9 +15,17 @@ void describe(`Team`, () => {
       [-2.6788],
       ["###"],
       ["222"],
+      ["ITALY"],
     ] as [string][]) {
       void it(`should not create a team if id doesnt follow ISO 3166-1 alfa-3 standard. Token: ${token}`, () => {
         assert.throws(() => new Team(token), Error);
+      });
+    }
+
+    for (const [token] of [["CRC"], ["NOR"], ["BRA"], ["ITA"]] as [string][]) {
+      void it(`should create a team when id follow ISO 3166-1 alfa-3 standard. Token: ${token}`, () => {
+        const team = new Team(token);
+        assert.equal(team.getId(), token);
       });
     }
   });
