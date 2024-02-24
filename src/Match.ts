@@ -15,8 +15,8 @@ export class Match {
    *    - teams ids must be different
    */
   constructor(local: Team, visitor: Team) {
-    if (local.id === visitor.id){
-        throw Error('id of local and visitor can not be the same')
+    if (local.id === visitor.id) {
+      throw Error("id of local and visitor can not be the same");
     }
     this.id = `${local.id}-${visitor.id}`;
     this.local = local;
@@ -42,16 +42,31 @@ export class Match {
     visitor: this.visitorScore,
   });
 
+  /**
+   * Whole numbers are a set of numbers including all natural numbers and 0.
+   * They are a part of real numbers that do not include fractions, decimals, or negative numbers.
+   * @see https://www.cuemath.com/numbers/whole-numbers/
+   */
+  private isWholeNumber = (input: any) =>
+    isNaN(input) !== true && input >= 0 && Number.isInteger(input); //
+
+  /**
+   * Update score of local and visitor team
+   */
   public setGoal = (local: number, visitor: number) => {
-    this.localScore += local;
-    this.visitorScore += visitor;
+    if (this.isWholeNumber(local) && this.isWholeNumber(visitor)) {
+      this.localScore += local;
+      this.visitorScore += visitor;
+    }
+
     return this.getScore();
   };
 
   /**
    * Get the total amount of goals in the match
    */
-  public getTotalAmountOfGoals = (): number => this.localScore + this.visitorScore
+  public getTotalAmountOfGoals = (): number =>
+    this.localScore + this.visitorScore;
 
   private setStatus = (status: MatchStatus) => (this.status = status);
 
