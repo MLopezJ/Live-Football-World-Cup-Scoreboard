@@ -1,6 +1,7 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { Tournament } from "./index";
+import type { Match } from "./Match";
 
 void describe(`start a new match`, () => {
   it(`should start a new match with score 0 for the local team and 0 for the visitor team`, async () => {
@@ -89,7 +90,18 @@ void describe(`finish match`, () => {
     const match = worldCup.addMatch(crc, nor);
 
     // finish the match
-	// TODO: add implementation
+    const finishedMatch = worldCup.finishMatch(`${crc.id}-${nor.id}`);
+
+    // check finished match status
+    if (finishedMatch !== undefined) {
+      assert.equal(finishedMatch.getStatus(), "finish");
+    } else {
+      // if finishedMatch is undefined means that the match id is not found, and is not possible to finish it. Because of that, it should fail
+      assert.equal(
+        (finishedMatch as unknown as Match).getId(),
+        `${crc.id}-${nor.id}`
+      );
+    }
 
     // check live scoreboard
     const liveScoreboard = worldCup.getLiveScoreboard();

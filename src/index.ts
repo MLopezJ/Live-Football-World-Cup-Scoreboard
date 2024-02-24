@@ -21,6 +21,15 @@ export class Tournament {
     return match;
   };
 
+  public finishMatch = (matchId: string): Match | undefined => {
+    const match = this.matches.find((match) => match.getId() === matchId);
+    if (match !== undefined) {
+      return match.finishMatch();
+    }
+    console.log(`Match with id ${matchId} not found`);
+    return undefined;
+  };
+
   public getMatch = (matchId: string) => {
     const match = this.matches.filter((match) => match.getId() === matchId);
     return match[0];

@@ -30,11 +30,21 @@ export class Match {
 
   public getStatus = () => this.status;
 
-  public getScore = () => ({local: this.localScore, visitor: this.visitorScore})
+  public getScore = () => ({
+    local: this.localScore,
+    visitor: this.visitorScore,
+  });
 
   public setGoal = (local: number, visitor: number) => {
-    this.localScore += local
-    this.visitorScore += visitor
-    return this.getScore()
-  }
+    this.localScore += local;
+    this.visitorScore += visitor;
+    return this.getScore();
+  };
+
+  private setStatus = (status: MatchStatus) => (this.status = status);
+
+  public finishMatch = () => {
+    this.setStatus("finish");
+    return this;
+  };
 }
