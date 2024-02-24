@@ -18,8 +18,8 @@ void describe(`start a new match`, () => {
     // check id of the match
     assert.equal(match?.getId(), `${local.id}-${visitor.id}`); // expected:  "CRC-NOR"
 
+	// check score
     const score = match.getScore();
-    // check score
     assert.equal(score.local, 0);
     assert.equal(score.visitor, 0);
   });
