@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { Tournament } from "./index";
+import { Tournament } from "./Tournament";
 import type { Match } from "./Match";
 
 void describe(`start a new match`, () => {
