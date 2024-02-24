@@ -17,7 +17,7 @@ void describe(`Team`, () => {
       ["222"],
     ] as [string][]) {
       void it(`should not create a team if id doesnt follow ISO 3166-1 alfa-3 standard. Token: ${token}`, () => {
-        assert.throws(() => new Team("CRC"), Error);
+        assert.throws(() => new Team(token), Error);
       });
     }
   });
