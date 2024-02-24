@@ -35,8 +35,14 @@ export class Tournament {
     return match[0];
   };
 
+  /**
+   * return matches following the next rules:
+   * - return the matches that are being played
+   * - TODO: return the matches sorted in ascending order by match score
+   * - return matches ordered by the most recently started if score is the same
+   */
   public getLiveScoreboard = () =>
-    this.matches.filter((match) => match.getStatus() === "active");
+    this.matches.filter((match) => match.getStatus() === "active").reverse();
 
   public getName = () => this.name;
 }
