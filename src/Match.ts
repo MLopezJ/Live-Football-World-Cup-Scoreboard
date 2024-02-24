@@ -41,6 +41,11 @@ export class Match {
     return this.getScore();
   };
 
+  /**
+   * Get the total amount of goals in the match
+   */
+  public getTotalAmountOfGoals = (): number => this.localScore + this.visitorScore
+
   private setStatus = (status: MatchStatus) => (this.status = status);
 
   public finishMatch = () => {
