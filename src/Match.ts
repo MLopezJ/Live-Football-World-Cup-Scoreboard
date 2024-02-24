@@ -44,9 +44,9 @@ export class Match {
   });
 
   public printScore = () =>
-    `${this.local.getId()} ${this.localScore} - ${this.visitor.getId()} ${
+    `${this.local.getId()} ${this.localScore} - ${
       this.visitorScore
-    }`;
+    } ${this.visitor.getId()} `;
 
   /**
    * Whole numbers are a set of numbers including all natural numbers and 0.

@@ -32,11 +32,11 @@ void describe(`Tournament`, () => {
 
       /**
        * Update order: 
-            a. Mexico 0 - Canada 5
-            b. Spain 10 - Brazil 2
-            c. Germany 2 - France 2
-            d. Uruguay 6 - Italy 6
-            e. Argentina 3 - Australia 1
+            a. Mexico    0 - 5 Canada 
+            b. Spain    10 - 2 Brazil 
+            c. Germany   2 - 2 France 
+            d. Uruguay   6 - 6 Italy 
+            e. Argentina 3 - 1 Australia 
        */
 
       // create matches
@@ -54,11 +54,11 @@ void describe(`Tournament`, () => {
 
       /**
        * Expected order:
-            1. Uruguay 6 - Italy 6
-            2. Spain 10 - Brazil 2
-            3. Mexico 0 - Canada 5
-            4. Argentina 3 - Australia 1
-            5. Germany 2 - France 2
+            1. Uruguay   6 - 6 Italy 
+            2. Spain    10 - 2 Brazil 
+            3. Mexico    0 - 5 Canada
+            4. Argentina 3 - 1 Australia 
+            5. Germany   2 - 2 France 
        */
 
       // 1 element of the live scoreboard should be the match URY_ITA
