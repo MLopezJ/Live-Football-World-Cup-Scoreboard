@@ -1,4 +1,5 @@
-export type Team = { id: string };
+import type { Team } from "./Team";
+
 type MatchStatus = "active" | "finish";
 
 export class Match {
@@ -15,10 +16,10 @@ export class Match {
    *    - teams ids must be different
    */
   constructor(local: Team, visitor: Team) {
-    if (local.id === visitor.id) {
+    if (local.getId() === visitor.getId()) {
       throw Error("id of local and visitor can not be the same");
     }
-    this.id = `${local.id}-${visitor.id}`;
+    this.id = `${local.getId()}-${visitor.getId()}`;
     this.local = local;
     this.visitor = visitor;
   }

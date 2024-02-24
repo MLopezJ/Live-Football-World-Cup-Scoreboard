@@ -1,4 +1,5 @@
-import { Match, type Team } from "./Match";
+import { Match } from "./Match";
+import type { Team } from "./Team";
 
 export class Tournament {
   private name: string;
