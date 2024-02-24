@@ -28,32 +28,37 @@ npm test
 
 # Example of usage
 
+```TypeScript
+// create tournament
+const worldCup = new Tournament("Fifa World Cup 2024");
+
+// add teams to the tournament
+const crc = worldCup.addTeam(new Team("CRC")); // Costa Rica
+const nor = worldCup.addTeam(new Team("NOR")); // Norway
+
+// create match                                local - visitor
+const CRCvsNOR = worldCup.addMatch(crc, nor); // CRC vs NOR
+// print live scoreboard
+console.log(worldCup.getLiveScoreboard()) // [CRC 0 - 0 NOR]
+
+// Goal: CRC 1 - 0 NOR
+CRCvsNOR?.setGoal(1, 0);
+// print live scoreboard
+console.log(worldCup.getLiveScoreboard()) // [CRC 1 - 0 NOR]
+
+// Goal: CRC 1 - 1 NOR
+CRCvsNOR?.setGoal(1, 1);
+// print live scoreboard
+console.log(worldCup.getLiveScoreboard()) // [CRC 1 - 1 NOR]
+
+// finish the match
+const finishedMatch = worldCup.finishMatch(`CRC-NOR`)
+// print live scoreboard
+console.log(worldCup.getLiveScoreboard()) // []
+
 ```
-// create new scoreboard
-()
 
-// Get a summary of matches in progress
-expected: [ ]
-
-// Start new match
-CRC-NOR
-
-// Get a summary of matches in progress
-expected: CRC 0 - NOR 0
-
-// Update score of a match
-CRC 1 - NOR 0
-
-// Get a summary of matches in progress
-expected: CRC 1 - NOR 0
-
-// Finish match
-CRC-NOR
-
-// Get a summary of matches in progress
-expected: [ ]
-
-```
+See [./src/example.ts](./src/example.ts) for an example with more teams
 
 # UML class diagram
 
