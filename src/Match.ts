@@ -10,7 +10,14 @@ export class Match {
   private startTime: Date = new Date();
   private status: MatchStatus = "active";
 
+  /**
+   * Rules for create a Match class:
+   *    - teams ids must be different
+   */
   constructor(local: Team, visitor: Team) {
+    if (local.id === visitor.id){
+        throw Error('id of local and visitor can not be the same')
+    }
     this.id = `${local.id}-${visitor.id}`;
     this.local = local;
     this.visitor = visitor;

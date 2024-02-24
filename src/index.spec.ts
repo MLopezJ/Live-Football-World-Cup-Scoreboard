@@ -38,7 +38,7 @@ void describe(`start a new match`, () => {
     const liveScoreboard = worldCup.getLiveScoreboard();
 
     const isMatchInLiveScoreboard = liveScoreboard.some(
-      (liveMatch) => liveMatch.getId() === match.getId()
+      (liveMatch) => liveMatch.getId() === match?.getId()
     );
 
     assert.equal(isMatchInLiveScoreboard, true);
@@ -58,7 +58,7 @@ void describe(`update score`, () => {
     const match = worldCup.addMatch(local, visitor);
 
     // check initial score
-    assert.equal(match.getScore().local, 0);
+    assert.equal(match?.getScore().local, 0);
     assert.equal(match.getScore().visitor, 0);
 
     // goal of local (CRC)
@@ -107,8 +107,11 @@ void describe(`finish match`, () => {
     // Check if match id is in list
     const isMatchInLiveScoreboard = (
       liveScoreboard: Match[],
-      matchId: string
-    ) => liveScoreboard.some((liveMatch) => liveMatch.getId() === matchId);
+      matchId: string | undefined
+    ) => {
+      if (matchId === undefined) return false;
+      return liveScoreboard.some((liveMatch) => liveMatch.getId() === matchId);
+    };
 
     // create tournament
     const worldCup = new Tournament("Fifa World Cup 2024");
@@ -122,7 +125,7 @@ void describe(`finish match`, () => {
 
     // match should be in live scoreboard
     assert.equal(
-      isMatchInLiveScoreboard(worldCup.getLiveScoreboard(), match.getId()),
+      isMatchInLiveScoreboard(worldCup.getLiveScoreboard(), match?.getId()),
       true
     );
 
@@ -131,7 +134,7 @@ void describe(`finish match`, () => {
 
     // match should not be in live scoreboard
     assert.equal(
-      isMatchInLiveScoreboard(worldCup.getLiveScoreboard(), match.getId()),
+      isMatchInLiveScoreboard(worldCup.getLiveScoreboard(), match?.getId()),
       false
     );
   });
@@ -156,15 +159,14 @@ void describe(`Get a summary of matches in progress`, () => {
     worldCup.addMatch(ita, esp); // ITA vs ESP
 
     // first element of the live scoreboard should not be the match BRAvsARG
-    assert.notEqual(worldCup.getLiveScoreboard()[0]?.getId(), BRAvsARG.getId());
+    assert.notEqual(worldCup.getLiveScoreboard()[0]?.getId(), BRAvsARG?.getId());
 
     // BRA 4 - 0 ARG
-    BRAvsARG.setGoal(4, 0);
+    BRAvsARG?.setGoal(4, 0);
 
     // first element of the live scoreboard should be the match BRAvsARG
-    assert.equal(worldCup.getLiveScoreboard()[0]?.getId(), BRAvsARG.getId());
+    assert.equal(worldCup.getLiveScoreboard()[0]?.getId(), BRAvsARG?.getId());
   });
-  
 
   it(`should return matches ordered by the most recently started if score is the same`, () => {
     // create tournament
@@ -184,7 +186,6 @@ void describe(`Get a summary of matches in progress`, () => {
     worldCup.addMatch(ita, esp); // ITA vs ESP
 
     // first element of the live scoreboard should be ITA-ESP
-	assert.equal(worldCup.getLiveScoreboard()[0]?.getId(), 'ITA-ESP');
-
+    assert.equal(worldCup.getLiveScoreboard()[0]?.getId(), "ITA-ESP");
   });
 });

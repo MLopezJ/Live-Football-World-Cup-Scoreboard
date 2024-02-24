@@ -14,11 +14,20 @@ export class Tournament {
     return team;
   };
 
-  public addMatch = (localTeam: Team, visitorTeam: Team): Match => {
-    const match = new Match(localTeam, visitorTeam);
-
-    this.matches.push(match);
-    return match;
+  /**
+   * Add a match to list of match
+   *
+   * Please check Match class to check class constraints
+   */
+  public addMatch = (localTeam: Team, visitorTeam: Team): Match | undefined => {
+    try {
+      const match = new Match(localTeam, visitorTeam);
+      this.matches.push(match);
+      return match;
+    } catch (error) {
+      console.log(error);
+      return undefined;
+    }
   };
 
   public finishMatch = (matchId: string): Match | undefined => {
