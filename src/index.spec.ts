@@ -17,7 +17,7 @@ void describe(`start a new match`, () => {
     // check id of the match
     assert.equal(match?.getId(), "CRC-NOR");
 
-	const score = match.getScore()
+    const score = match.getScore();
     // check score
     assert.equal(score.local, 0);
     assert.equal(score.visitor, 0);
@@ -34,44 +34,44 @@ void describe(`start a new match`, () => {
     // create a match
     const match = worldCup.addMatch(crc, nor);
 
-   const liveScoreboard = worldCup.getLiveScoreboard()
+    const liveScoreboard = worldCup.getLiveScoreboard();
 
-   const isMatchInLiveScoreboard = liveScoreboard.some(liveMatch => liveMatch.getId() ===  match.getId())
+    const isMatchInLiveScoreboard = liveScoreboard.some(
+      (liveMatch) => liveMatch.getId() === match.getId()
+    );
 
-   assert.equal(isMatchInLiveScoreboard, true)
+    assert.equal(isMatchInLiveScoreboard, true);
   });
 });
 
 void describe(`update score`, () => {
-	it(`should update score of an existing match`, () => {
-		// create tournament
-		const worldCup = new Tournament("Fifa World Cup 2024");
+  it(`should update score of an existing match`, () => {
+    // create tournament
+    const worldCup = new Tournament("Fifa World Cup 2024");
 
-		// add teams to the tournament
-		const crc = worldCup.addTeam({ id: "CRC" });
-		const nor = worldCup.addTeam({ id: "NOR" });
-	
-		// create a match
-		const match = worldCup.addMatch(crc, nor);
-		
-		// check initial score
-		assert.equal(match.getScore().local, 0);
-		assert.equal(match.getScore().visitor, 0);
+    // add teams to the tournament
+    const crc = worldCup.addTeam({ id: "CRC" });
+    const nor = worldCup.addTeam({ id: "NOR" });
 
-		// goal of local (CRC)
-		match.setGoal(1,0)
+    // create a match
+    const match = worldCup.addMatch(crc, nor);
 
-		// check updated score
-		assert.equal(match.getScore().local, 1);
-		assert.equal(match.getScore().visitor, 0);
+    // check initial score
+    assert.equal(match.getScore().local, 0);
+    assert.equal(match.getScore().visitor, 0);
 
-		// goal of visitor (NOR)
-		match.setGoal(0,1)
+    // goal of local (CRC)
+    match.setGoal(1, 0);
 
-		// check updated score
-		assert.equal(match.getScore().local, 1);
-		assert.equal(match.getScore().visitor, 1);
+    // check updated score
+    assert.equal(match.getScore().local, 1);
+    assert.equal(match.getScore().visitor, 0);
 
-		
-	})
-})
+    // goal of visitor (NOR)
+    match.setGoal(0, 1);
+
+    // check updated score
+    assert.equal(match.getScore().local, 1);
+    assert.equal(match.getScore().visitor, 1);
+  });
+});
