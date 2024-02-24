@@ -18,7 +18,7 @@ void describe(`start a new match`, () => {
     // check id of the match
     assert.equal(match?.getId(), `${local.id}-${visitor.id}`); // expected:  "CRC-NOR"
 
-	// check score
+    // check score
     const score = match.getScore();
     assert.equal(score.local, 0);
     assert.equal(score.visitor, 0);
@@ -111,5 +111,34 @@ void describe(`finish match`, () => {
     );
 
     assert.equal(isMatchInLiveScoreboard, false);
+  });
+});
+
+void describe(`Get a summary of matches in progress`, () => {
+  it(`should return matches in progress sorted in ascending order by match score`, () => {
+    // create tournament
+    const worldCup = new Tournament("Fifa World Cup 2024");
+
+    // add teams to the tournament
+    const crc = worldCup.addTeam({ id: "CRC" }); // Costa Rica
+    const nor = worldCup.addTeam({ id: "NOR" }); // Norway
+    const bra = worldCup.addTeam({ id: "BRA" }); // Brazil
+    const arg = worldCup.addTeam({ id: "ARG" }); // Argentina
+    const ita = worldCup.addTeam({ id: "ITA" }); // Italy
+    const esp = worldCup.addTeam({ id: "ESP" }); // Spain
+
+    // create the match                             local - visitor
+    worldCup.addMatch(crc, nor);                   // CRC vs NOR
+    const BRAvsARG = worldCup.addMatch(bra, arg);  // BRA vs ARG
+    worldCup.addMatch(ita, esp);                   // ITA vs ESP
+
+	// first element of the live scoreboard should not be the match BRAvsARG
+	assert.notEqual(worldCup.getLiveScoreboard()[0]?.getId(),BRAvsARG.getId())
+
+    // BRA 4 - 0 ARG
+    BRAvsARG.setGoal(4, 0);
+
+	// first element of the live scoreboard should be the match BRAvsARG
+	assert.equal(worldCup.getLiveScoreboard()[0]?.getId(),BRAvsARG.getId())
   });
 });
