@@ -75,3 +75,29 @@ void describe(`update score`, () => {
     assert.equal(match.getScore().visitor, 1);
   });
 });
+
+void describe(`finish match`, () => {
+  it(`should finish a match currently in progress`, () => {
+    // create tournament
+    const worldCup = new Tournament("Fifa World Cup 2024");
+
+    // add teams to the tournament
+    const crc = worldCup.addTeam({ id: "CRC" });
+    const nor = worldCup.addTeam({ id: "NOR" });
+
+    // create the match
+    const match = worldCup.addMatch(crc, nor);
+
+    // finish the match
+	// TODO: add implementation
+
+    // check live scoreboard
+    const liveScoreboard = worldCup.getLiveScoreboard();
+
+    const isMatchInLiveScoreboard = liveScoreboard.some(
+      (liveMatch) => liveMatch.getId() === match.getId()
+    );
+
+    assert.equal(isMatchInLiveScoreboard, false);
+  });
+});
