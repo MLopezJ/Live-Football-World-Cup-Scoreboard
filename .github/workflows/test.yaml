@@ -27,3 +27,6 @@ jobs:
       - name: Run unit tests
         run: npm test
 
+      - name: Run example
+        run: npx tsx src/example.ts
+
