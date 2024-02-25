@@ -20,21 +20,49 @@ export class Tournament {
   /**
    * Add a match to list of matches if:
    *  - Teams are register in teams list
+   *  - Teams have not active matches
    *  - Teams follow Match class constraints
    *
    * Please check Match class to check class constraints
    */
   public addMatch = (localTeam: Team, visitorTeam: Team): Match | undefined => {
-    const errorMessage = (team: string, id: string) =>
+    // check teams are register in teams list
+    const teamNotRegister = (team: string, id: string) =>
       `${team} team is not register in the tournament teams list. Team id: ${id}`;
 
     if (this.getTeam(localTeam.getId()) === undefined) {
-      console.error(new Error(errorMessage("Local", localTeam.getId())));
+      console.error(new Error(teamNotRegister("Local", localTeam.getId())));
       return undefined;
     }
 
     if (this.getTeam(visitorTeam.getId()) === undefined) {
-      console.error(new Error(errorMessage("Visitor", visitorTeam.getId())));
+      console.error(new Error(teamNotRegister("Visitor", visitorTeam.getId())));
+      return undefined;
+    }
+
+    // check teams have not active matches
+    const activeMatch = (team: string, id: string) =>
+      `${team} team has an active game in this moment in the tournament. Team id: ${id}`;
+
+    if (
+      this.matches.some(
+        (match) =>
+          match.getLocal().getId() === localTeam.getId() ||
+          match.getVisitor().getId() === localTeam.getId(),
+      ) === true
+    ) {
+      console.error(new Error(activeMatch("Local", localTeam.getId())));
+      return undefined;
+    }
+
+    if (
+      this.matches.some(
+        (match) =>
+          match.getLocal().getId() === visitorTeam.getId() ||
+          match.getVisitor().getId() === visitorTeam.getId(),
+      ) === true
+    ) {
+      console.error(new Error(activeMatch("Visitor", visitorTeam.getId())));
       return undefined;
     }
 
@@ -59,6 +87,8 @@ export class Tournament {
 
   /**
    * Find match by id in list of matches
+   *
+   * TODO: update parameter. Ask for team ids instead of match id.
    */
   public getMatch = (matchId: string): Match | undefined =>
     this.matches.find((match) => match.getId() === matchId);

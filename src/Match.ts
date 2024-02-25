@@ -24,6 +24,10 @@ export class Match {
     this.visitor = visitor;
   }
 
+  public getLocal = () => this.local;
+
+  public getVisitor = () => this.visitor;
+
   public returnInfo = () => ({
     id: this.id,
     local: this.local,
