@@ -9,9 +9,12 @@ void describe(`start a new match`, () => {
     // create tournament
     const worldCup = new Tournament("Fifa World Cup 2024");
 
+    // create teams
+    const local = new Team("CRC");
+    const visitor = new Team("NOR");
+
     // add teams to the tournament
-    const local = worldCup.addTeam(new Team("CRC"));
-    const visitor = worldCup.addTeam(new Team("NOR"));
+    worldCup.addTeam(local).addTeam(visitor);
 
     // create a match
     worldCup.addMatch(local, visitor);
@@ -30,9 +33,12 @@ void describe(`start a new match`, () => {
     // create tournament
     const worldCup = new Tournament("Fifa World Cup 2024");
 
+    // create teams
+    const local = new Team("CRC");
+    const visitor = new Team("NOR");
+
     // add teams to the tournament
-    const local = worldCup.addTeam(new Team("CRC"));
-    const visitor = worldCup.addTeam(new Team("NOR"));
+    worldCup.addTeam(local).addTeam(visitor);
 
     // create a match
     worldCup.addMatch(local, visitor);
@@ -51,9 +57,12 @@ void describe(`update score`, () => {
     // create tournament
     const worldCup = new Tournament("Fifa World Cup 2024");
 
+    // create teams
+    const local = new Team("CRC");
+    const visitor = new Team("NOR");
+
     // add teams to the tournament
-    const local = worldCup.addTeam(new Team("CRC"));
-    const visitor = worldCup.addTeam(new Team("NOR"));
+    worldCup.addTeam(local).addTeam(visitor);
 
     // create a match
     worldCup.addMatch(local, visitor);
@@ -84,16 +93,19 @@ void describe(`finish match`, () => {
     // create tournament
     const worldCup = new Tournament("Fifa World Cup 2024");
 
+    // create teams
+    const local = new Team("CRC");
+    const visitor = new Team("NOR");
+
     // add teams to the tournament
-    const local = worldCup.addTeam(new Team("CRC"));
-    const visitor = worldCup.addTeam(new Team("NOR"));
+    worldCup.addTeam(local).addTeam(visitor);
 
     // create the match
     worldCup.addMatch(local, visitor);
 
     // finish the match
     const finishedMatch = worldCup.finishMatch(
-      `${local.getId()}-${visitor.getId()}`
+      `${local.getId()}-${visitor.getId()}`,
     );
 
     // check finished match status
@@ -103,7 +115,7 @@ void describe(`finish match`, () => {
       // if finishedMatch is undefined means that the match id is not found, and is not possible to finish it. Because of that, it should fail
       assert.equal(
         (finishedMatch as unknown as Match).getId(),
-        `${local.getId()}-${visitor.getId()}`
+        `${local.getId()}-${visitor.getId()}`,
       );
     }
   });
@@ -111,7 +123,7 @@ void describe(`finish match`, () => {
     // Check if match id is in list
     const isMatchInLiveScoreboard = (
       liveScoreboard: liveScoreboard[],
-      matchId: string | undefined
+      matchId: string | undefined,
     ) => {
       if (matchId === undefined) return false;
       return liveScoreboard.some((liveMatch) => liveMatch.matchId === matchId);
@@ -120,9 +132,12 @@ void describe(`finish match`, () => {
     // create tournament
     const worldCup = new Tournament("Fifa World Cup 2024");
 
+    // create teams
+    const local = new Team("CRC");
+    const visitor = new Team("NOR");
+
     // add teams to the tournament
-    const local = worldCup.addTeam(new Team("CRC"));
-    const visitor = worldCup.addTeam(new Team("NOR"));
+    worldCup.addTeam(local).addTeam(visitor);
 
     // create the match
     worldCup.addMatch(local, visitor);
@@ -131,7 +146,7 @@ void describe(`finish match`, () => {
     // match should be in live scoreboard
     assert.equal(
       isMatchInLiveScoreboard(worldCup.getLiveScoreboard(), match?.getId()),
-      true
+      true,
     );
 
     // finish the match
@@ -140,7 +155,7 @@ void describe(`finish match`, () => {
     // match should not be in live scoreboard
     assert.equal(
       isMatchInLiveScoreboard(worldCup.getLiveScoreboard(), match?.getId()),
-      false
+      false,
     );
   });
 });
@@ -150,13 +165,22 @@ void describe(`Get a summary of matches in progress`, () => {
     // create tournament
     const worldCup = new Tournament("Fifa World Cup 2024");
 
+    // Create teams
+    const crc = new Team("CRC"); // Costa Rica
+    const nor = new Team("NOR"); // Norway
+    const bra = new Team("BRA"); // Brazil
+    const arg = new Team("ARG"); // Argentina
+    const ita = new Team("ITA"); // Italy
+    const esp = new Team("ESP"); // Spain
+
     // add teams to the tournament
-    const crc = worldCup.addTeam(new Team("CRC")); // Costa Rica
-    const nor = worldCup.addTeam(new Team("NOR")); // Norway
-    const bra = worldCup.addTeam(new Team("BRA")); // Brazil
-    const arg = worldCup.addTeam(new Team("ARG")); // Argentina
-    const ita = worldCup.addTeam(new Team("ITA")); // Italy
-    const esp = worldCup.addTeam(new Team("ESP")); // Spain
+    worldCup
+      .addTeam(crc) // Costa Rica
+      .addTeam(nor) // Norway
+      .addTeam(bra) // Brazil
+      .addTeam(arg) // Argentina
+      .addTeam(ita) // Italy
+      .addTeam(esp); // Spain
 
     // create the match           local - visitor
     worldCup
@@ -169,7 +193,7 @@ void describe(`Get a summary of matches in progress`, () => {
     // first element of the live scoreboard should not be the match BRAvsARG
     assert.notEqual(
       worldCup.getLiveScoreboard()[0]?.matchId,
-      BRAvsARG?.getId()
+      BRAvsARG?.getId(),
     );
 
     // BRA 4 - 0 ARG
@@ -183,13 +207,22 @@ void describe(`Get a summary of matches in progress`, () => {
     // create tournament
     const worldCup = new Tournament("Fifa World Cup 2024");
 
+    // Create teams
+    const crc = new Team("CRC"); // Costa Rica
+    const nor = new Team("NOR"); // Norway
+    const bra = new Team("BRA"); // Brazil
+    const arg = new Team("ARG"); // Argentina
+    const ita = new Team("ITA"); // Italy
+    const esp = new Team("ESP"); // Spain
+
     // add teams to the tournament
-    const crc = worldCup.addTeam(new Team("CRC")); // Costa Rica
-    const nor = worldCup.addTeam(new Team("NOR")); // Norway
-    const bra = worldCup.addTeam(new Team("BRA")); // Brazil
-    const arg = worldCup.addTeam(new Team("ARG")); // Argentina
-    const ita = worldCup.addTeam(new Team("ITA")); // Italy
-    const esp = worldCup.addTeam(new Team("ESP")); // Spain
+    worldCup
+      .addTeam(crc) // Costa Rica
+      .addTeam(nor) // Norway
+      .addTeam(bra) // Brazil
+      .addTeam(arg) // Argentina
+      .addTeam(ita) // Italy
+      .addTeam(esp); // Spain
 
     // create the match           local - visitor
     worldCup

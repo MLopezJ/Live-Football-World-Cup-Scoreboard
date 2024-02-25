@@ -9,25 +9,39 @@ void describe(`Tournament`, () => {
       // create tournament
       const worldCup = new Tournament("Fifa World Cup 2024");
 
-      // add teams to the tournament
-      const MEX = worldCup.addTeam(new Team("MEX"));
-      const CAN = worldCup.addTeam(new Team("CAN"));
-      const ESP = worldCup.addTeam(new Team("ESP"));
-      const BRA = worldCup.addTeam(new Team("BRA"));
-      const DEU = worldCup.addTeam(new Team("DEU"));
-      const FRA = worldCup.addTeam(new Team("FRA"));
-      const URY = worldCup.addTeam(new Team("URY"));
-      const ITA = worldCup.addTeam(new Team("ITA"));
-      const ARG = worldCup.addTeam(new Team("ARG"));
-      const AUS = worldCup.addTeam(new Team("AUS"));
+      // create teams
+      const MEX = new Team("MEX");
+      const CAN = new Team("CAN");
+      const ESP = new Team("ESP");
+      const BRA = new Team("BRA");
+      const DEU = new Team("DEU");
+      const FRA = new Team("FRA");
+      const URY = new Team("URY");
+      const ITA = new Team("ITA");
+      const ARG = new Team("ARG");
+      const AUS = new Team("AUS");
+
+      // Register teams in the tournament
+      worldCup
+        .addTeam(MEX)
+        .addTeam(CAN)
+        .addTeam(ESP)
+        .addTeam(BRA)
+        .addTeam(DEU)
+        .addTeam(FRA)
+        .addTeam(URY)
+        .addTeam(ITA)
+        .addTeam(ARG)
+        .addTeam(AUS);
 
       /**
-       * Creation order: 
-            a. Mexico    - Canada
-            b. Spain     - Brazil 
-            c. Germany   - France
-            d. Uruguay   - Italy
-            e. Argentina - Australia
+       * Creation matches.
+       * Order: 
+            1. Mexico    - Canada
+            2. Spain     - Brazil 
+            3. Germany   - France
+            4. Uruguay   - Italy
+            5. Argentina - Australia
        */
       worldCup
         .addMatch(MEX, CAN)
@@ -37,6 +51,7 @@ void describe(`Tournament`, () => {
         .addMatch(ARG, AUS);
 
       /**
+       * Set goals.
        * Update order: 
             a. Mexico    0 - 5 Canada 
             b. Spain    10 - 2 Brazil 
@@ -62,15 +77,30 @@ void describe(`Tournament`, () => {
 
       const liveScoreboard = worldCup.getLiveScoreboard();
       // 1 element of the live scoreboard should be the match URY_ITA
-      assert.equal(liveScoreboard[0]?.matchId, worldCup.getMatch(URY, ITA)?.getId());
+      assert.equal(
+        liveScoreboard[0]?.matchId,
+        worldCup.getMatch(URY, ITA)?.getId(),
+      );
       // 2 element of the live scoreboard should be the match ESP_BRA
-      assert.equal(liveScoreboard[1]?.matchId, worldCup.getMatch(ESP, BRA)?.getId());
+      assert.equal(
+        liveScoreboard[1]?.matchId,
+        worldCup.getMatch(ESP, BRA)?.getId(),
+      );
       // 3 element of the live scoreboard should be the match MEX_CAN
-      assert.equal(liveScoreboard[2]?.matchId, worldCup.getMatch(MEX, CAN)?.getId());
+      assert.equal(
+        liveScoreboard[2]?.matchId,
+        worldCup.getMatch(MEX, CAN)?.getId(),
+      );
       // 4 element of the live scoreboard should be the match ARG_AUS
-      assert.equal(liveScoreboard[3]?.matchId, worldCup.getMatch(ARG, AUS)?.getId());
+      assert.equal(
+        liveScoreboard[3]?.matchId,
+        worldCup.getMatch(ARG, AUS)?.getId(),
+      );
       // 5 element of the live scoreboard should be the match DEU_FRA
-      assert.equal(liveScoreboard[4]?.matchId, worldCup.getMatch(DEU, FRA)?.getId());
+      assert.equal(
+        liveScoreboard[4]?.matchId,
+        worldCup.getMatch(DEU, FRA)?.getId(),
+      );
     });
   });
 

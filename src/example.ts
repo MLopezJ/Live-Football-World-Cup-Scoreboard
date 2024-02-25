@@ -15,7 +15,7 @@ const worldCup = new Tournament("Fifa World Cup 2024");
 console.log(`-- Tournament ${worldCup.getName()}  --\n`);
 
 /**
- * Teams in the tournament:
+ * Create teams:
  *  - Mexico
  *  - Canada
  *  - Spain
@@ -27,16 +27,29 @@ console.log(`-- Tournament ${worldCup.getName()}  --\n`);
  *  - Argentina
  *  - Australia
  */
-const MEX = worldCup.addTeam(new Team("MEX"));
-const CAN = worldCup.addTeam(new Team("CAN"));
-const ESP = worldCup.addTeam(new Team("ESP"));
-const BRA = worldCup.addTeam(new Team("BRA"));
-const DEU = worldCup.addTeam(new Team("DEU"));
-const FRA = worldCup.addTeam(new Team("FRA"));
-const URY = worldCup.addTeam(new Team("URY"));
-const ITA = worldCup.addTeam(new Team("ITA"));
-const ARG = worldCup.addTeam(new Team("ARG"));
-const AUS = worldCup.addTeam(new Team("AUS"));
+const MEX = new Team("MEX");
+const CAN = new Team("CAN");
+const ESP = new Team("ESP");
+const BRA = new Team("BRA");
+const DEU = new Team("DEU");
+const FRA = new Team("FRA");
+const URY = new Team("URY");
+const ITA = new Team("ITA");
+const ARG = new Team("ARG");
+const AUS = new Team("AUS");
+
+// Register teams in the tournament
+worldCup
+  .addTeam(MEX)
+  .addTeam(CAN)
+  .addTeam(ESP)
+  .addTeam(BRA)
+  .addTeam(DEU)
+  .addTeam(FRA)
+  .addTeam(URY)
+  .addTeam(ITA)
+  .addTeam(ARG)
+  .addTeam(AUS);
 
 console.log("-- starting matches   --\n");
 /**
@@ -60,12 +73,11 @@ printLiveScoreboard(worldCup.getLiveScoreboard());
 worldCup.getMatch(MEX, CAN)?.setGoal(0, 5);
 worldCup.getMatch(ESP, BRA)?.setGoal(10, 2);
 worldCup.getMatch(DEU, FRA)?.setGoal(2, 2);
-const URY_ITA = worldCup.getMatch(URY, ITA)?.setGoal(6, 6);
 worldCup.getMatch(ARG, AUS)?.setGoal(3, 1);
-
+const URY_ITA = worldCup.getMatch(URY, ITA)?.setGoal(6, 6);
 
 console.log(
-  "-- Scores are beign updated. Check src/example.ts to get more information --\n"
+  "-- Scores are beign updated. Check src/example.ts to get more information --\n",
 );
 
 printLiveScoreboard(worldCup.getLiveScoreboard());

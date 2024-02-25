@@ -12,9 +12,9 @@ export class Tournament {
     this.name = name;
   }
 
-  public addTeam = (team: Team): Team => {
+  public addTeam = (team: Team): this => {
     this.teams.push(team);
-    return team;
+    return this;
   };
 
   /**
