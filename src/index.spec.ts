@@ -113,7 +113,7 @@ void describe(`finish match`, () => {
       // if finishedMatch is undefined means that the match id is not found, and is not possible to finish it. Because of that, it should fail
       assert.equal(
         (finishedMatch as unknown as Match).getId(),
-        `${local.getId()}-${visitor.getId()}`
+        `${local.getId()}-${visitor.getId()}`,
       );
     }
   });
@@ -121,7 +121,7 @@ void describe(`finish match`, () => {
     // Check if match id is in list
     const isMatchInLiveScoreboard = (
       liveScoreboard: liveScoreboard[],
-      matchId: string | undefined
+      matchId: string | undefined,
     ) => {
       if (matchId === undefined) return false;
       return liveScoreboard.some((liveMatch) => liveMatch.matchId === matchId);
@@ -144,7 +144,7 @@ void describe(`finish match`, () => {
     // match should be in live scoreboard
     assert.equal(
       isMatchInLiveScoreboard(worldCup.getLiveScoreboard(), match?.getId()),
-      true
+      true,
     );
 
     // finish the match
@@ -153,7 +153,7 @@ void describe(`finish match`, () => {
     // match should not be in live scoreboard
     assert.equal(
       isMatchInLiveScoreboard(worldCup.getLiveScoreboard(), match?.getId()),
-      false
+      false,
     );
   });
 });
@@ -191,7 +191,7 @@ void describe(`Get a summary of matches in progress`, () => {
     // first element of the live scoreboard should not be the match BRAvsARG
     assert.notEqual(
       worldCup.getLiveScoreboard()[0]?.matchId,
-      BRAvsARG?.getId()
+      BRAvsARG?.getId(),
     );
 
     // BRA 4 - 0 ARG
