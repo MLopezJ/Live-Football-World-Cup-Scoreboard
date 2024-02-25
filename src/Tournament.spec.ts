@@ -73,4 +73,27 @@ void describe(`Tournament`, () => {
       assert.equal(worldCup.getLiveScoreboard()[4]?.matchId, DEU_FRA?.getId());
     });
   });
+
+  void describe(`Teams`, () => {
+    void it(`should not crate match if team is not register in the tournament`, () => {
+      // create tournament
+      const worldCup = new Tournament("Fifa World Cup 2024");
+
+      // create teams
+      const CRC = new Team("CRC");
+      const NOR = new Team("NOR");
+
+      // register teams in tournament
+      worldCup.addTeam(CRC);
+
+      // add matchs
+      worldCup.addMatch(CRC, NOR);
+
+      // expect throw an error
+
+      // expect live scoreboard does not have it
+      assert.equal(worldCup.getLiveScoreboard().length, 0);
+      
+    });
+  });
 });
