@@ -25,19 +25,19 @@ export class Tournament {
    *
    * Please check Match class to check class constraints
    */
-  public addMatch = (localTeam: Team, visitorTeam: Team): Match | undefined => {
+  public addMatch = (localTeam: Team, visitorTeam: Team): this => {
     // check teams are register in teams list
     const teamNotRegister = (team: string, id: string) =>
       `${team} team is not register in the tournament teams list. Team id: ${id}`;
 
     if (this.getTeam(localTeam.getId()) === undefined) {
       console.error(new Error(teamNotRegister("Local", localTeam.getId())));
-      return undefined;
+      return this;
     }
 
     if (this.getTeam(visitorTeam.getId()) === undefined) {
       console.error(new Error(teamNotRegister("Visitor", visitorTeam.getId())));
-      return undefined;
+      return this;
     }
 
     // check teams have not active matches
@@ -52,7 +52,7 @@ export class Tournament {
       ) === true
     ) {
       console.error(new Error(activeMatch("Local", localTeam.getId())));
-      return undefined;
+      return this;
     }
 
     if (
@@ -63,19 +63,22 @@ export class Tournament {
       ) === true
     ) {
       console.error(new Error(activeMatch("Visitor", visitorTeam.getId())));
-      return undefined;
+      return this;
     }
 
     try {
       const match = new Match(localTeam, visitorTeam);
       this.matches.push(match);
-      return match;
+      return this;
     } catch (error) {
       console.log(error);
-      return undefined;
+      return this;
     }
   };
 
+  /**
+   * TODO: finish match following getMatch example with params
+   */
   public finishMatch = (matchId: string): Match | undefined => {
     const match = this.matches.find((match) => match.getId() === matchId); // TODO: use getMatch
     if (match !== undefined) {

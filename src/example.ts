@@ -47,22 +47,25 @@ console.log("-- starting matches   --\n");
  * - URY vs ITA
  * - ARG vs AUS
  */
-const MEX_CAN = worldCup.addMatch(MEX, CAN);
-const ESP_BRA = worldCup.addMatch(ESP, BRA);
-const DEU_FRA = worldCup.addMatch(DEU, FRA);
-const URY_ITA = worldCup.addMatch(URY, ITA);
-const ARG_AUS = worldCup.addMatch(ARG, AUS);
+worldCup
+  .addMatch(MEX, CAN)
+  .addMatch(ESP, BRA)
+  .addMatch(DEU, FRA)
+  .addMatch(URY, ITA)
+  .addMatch(ARG, AUS);
 
 printLiveScoreboard(worldCup.getLiveScoreboard());
 
 // Update scores
-if (MEX_CAN) MEX_CAN.setGoal(0, 5);
-if (ESP_BRA) ESP_BRA.setGoal(10, 2);
-if (DEU_FRA) DEU_FRA.setGoal(2, 2);
-if (URY_ITA) URY_ITA.setGoal(6, 6);
-if (ARG_AUS) ARG_AUS.setGoal(3, 1);
+worldCup.getMatch(MEX, CAN)?.setGoal(0, 5);
+worldCup.getMatch(ESP, BRA)?.setGoal(10, 2);
+worldCup.getMatch(DEU, FRA)?.setGoal(2, 2);
+const URY_ITA = worldCup.getMatch(URY, ITA)?.setGoal(6, 6);
+worldCup.getMatch(ARG, AUS)?.setGoal(3, 1);
+
+
 console.log(
-  "-- Scores are beign updated. Check src/example.ts to get more information --\n",
+  "-- Scores are beign updated. Check src/example.ts to get more information --\n"
 );
 
 printLiveScoreboard(worldCup.getLiveScoreboard());

@@ -72,7 +72,8 @@ export class Match {
       this.visitorScore += visitor;
     }
 
-    return this.getScore();
+    return this
+    //return this.getScore();
   };
 
   /**

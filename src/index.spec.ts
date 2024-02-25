@@ -14,7 +14,8 @@ void describe(`start a new match`, () => {
     const visitor = worldCup.addTeam(new Team("NOR"));
 
     // create a match
-    const match = worldCup.addMatch(local, visitor);
+    worldCup.addMatch(local, visitor);
+    const match = worldCup.getMatch(local, visitor);
 
     // check id of the match
     assert.equal(match?.getId(), `${local.getId()}-${visitor.getId()}`); // expected:  "CRC-NOR"
@@ -34,13 +35,12 @@ void describe(`start a new match`, () => {
     const visitor = worldCup.addTeam(new Team("NOR"));
 
     // create a match
-    const match = worldCup.addMatch(local, visitor);
+    worldCup.addMatch(local, visitor);
+    const match = worldCup.getMatch(local, visitor);
 
-    const liveScoreboard = worldCup.getLiveScoreboard();
-
-    const isMatchInLiveScoreboard = liveScoreboard.some(
-      (liveMatch) => liveMatch.matchId === match?.getId(),
-    );
+    const isMatchInLiveScoreboard = worldCup
+      .getLiveScoreboard()
+      .some((liveMatch) => liveMatch.matchId === match?.getId());
 
     assert.equal(isMatchInLiveScoreboard, true);
   });
@@ -56,7 +56,8 @@ void describe(`update score`, () => {
     const visitor = worldCup.addTeam(new Team("NOR"));
 
     // create a match
-    const match = worldCup.addMatch(local, visitor);
+    worldCup.addMatch(local, visitor);
+    const match = worldCup.getMatch(local, visitor);
 
     // check initial score
     assert.equal(match?.getScore().local, 0);
@@ -92,7 +93,7 @@ void describe(`finish match`, () => {
 
     // finish the match
     const finishedMatch = worldCup.finishMatch(
-      `${local.getId()}-${visitor.getId()}`,
+      `${local.getId()}-${visitor.getId()}`
     );
 
     // check finished match status
@@ -102,7 +103,7 @@ void describe(`finish match`, () => {
       // if finishedMatch is undefined means that the match id is not found, and is not possible to finish it. Because of that, it should fail
       assert.equal(
         (finishedMatch as unknown as Match).getId(),
-        `${local.getId()}-${visitor.getId()}`,
+        `${local.getId()}-${visitor.getId()}`
       );
     }
   });
@@ -110,7 +111,7 @@ void describe(`finish match`, () => {
     // Check if match id is in list
     const isMatchInLiveScoreboard = (
       liveScoreboard: liveScoreboard[],
-      matchId: string | undefined,
+      matchId: string | undefined
     ) => {
       if (matchId === undefined) return false;
       return liveScoreboard.some((liveMatch) => liveMatch.matchId === matchId);
@@ -124,12 +125,13 @@ void describe(`finish match`, () => {
     const visitor = worldCup.addTeam(new Team("NOR"));
 
     // create the match
-    const match = worldCup.addMatch(local, visitor);
+    worldCup.addMatch(local, visitor);
+    const match = worldCup.getMatch(local, visitor);
 
     // match should be in live scoreboard
     assert.equal(
       isMatchInLiveScoreboard(worldCup.getLiveScoreboard(), match?.getId()),
-      true,
+      true
     );
 
     // finish the match
@@ -138,7 +140,7 @@ void describe(`finish match`, () => {
     // match should not be in live scoreboard
     assert.equal(
       isMatchInLiveScoreboard(worldCup.getLiveScoreboard(), match?.getId()),
-      false,
+      false
     );
   });
 });
@@ -157,14 +159,17 @@ void describe(`Get a summary of matches in progress`, () => {
     const esp = worldCup.addTeam(new Team("ESP")); // Spain
 
     // create the match           local - visitor
-    worldCup.addMatch(crc, nor); // CRC vs NOR
-    const BRAvsARG = worldCup.addMatch(bra, arg); // BRA vs ARG
-    worldCup.addMatch(ita, esp); // ITA vs ESP
+    worldCup
+      .addMatch(crc, nor) // CRC vs NOR
+      .addMatch(bra, arg) // BRA vs ARG
+      .addMatch(ita, esp); // ITA vs ESP
+
+    const BRAvsARG = worldCup.getMatch(bra, arg);
 
     // first element of the live scoreboard should not be the match BRAvsARG
     assert.notEqual(
       worldCup.getLiveScoreboard()[0]?.matchId,
-      BRAvsARG?.getId(),
+      BRAvsARG?.getId()
     );
 
     // BRA 4 - 0 ARG
@@ -187,9 +192,10 @@ void describe(`Get a summary of matches in progress`, () => {
     const esp = worldCup.addTeam(new Team("ESP")); // Spain
 
     // create the match           local - visitor
-    worldCup.addMatch(crc, nor); // CRC vs NOR
-    worldCup.addMatch(bra, arg); // BRA vs ARG
-    worldCup.addMatch(ita, esp); // ITA vs ESP
+    worldCup
+      .addMatch(crc, nor) // CRC vs NOR
+      .addMatch(bra, arg) // BRA vs ARG
+      .addMatch(ita, esp); // ITA vs ESP
 
     // first element of the live scoreboard should be ITA-ESP
     assert.equal(worldCup.getLiveScoreboard()[0]?.matchId, "ITA-ESP");
