@@ -31,14 +31,14 @@ See [./src/index.spec.ts](./src/index.spec.ts) for more information.
 # Example of usage
 
 ```TypeScript
-import { Team, Tournament } from "./src/index";
+import { Tournament } from "./src/index";
 
 // create tournament
 const worldCup = new Tournament("Fifa World Cup 2024");
 
 // create teams
-const CRC = new Team("CRC"); // Costa Rica
-const NOR = new Team("NOR"); // Norway
+const CRC = worldCup.createTeam("CRC");
+const NOR = worldCup.createTeam("NOR");
 
 // add teams to the tournament
 worldCup.addTeam(CRC).addTeam(NOR);
