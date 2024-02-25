@@ -1,14 +1,5 @@
-import { Team } from "./Team";
-import { Tournament, type liveScoreboard } from "./Tournament";
-
-/**
- * Helper function to log the live scorerboard in the console
- */
-const printLiveScoreboard = (liveScoreboard: liveScoreboard[]) => {
-  console.log(`-- printing live scoreboard --`);
-  liveScoreboard.map((scoreboard) => console.log(`     ${scoreboard.result}`));
-  console.log(`\n`);
-};
+import { Team, Tournament } from "./index";
+import { printLiveScoreboard } from "./printLiveScoreboard";
 
 // create tournament
 const worldCup = new Tournament("Fifa World Cup 2024");
