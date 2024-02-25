@@ -8,7 +8,6 @@ export class Match {
   private localScore: number = 0;
   private visitor: Team;
   private visitorScore: number = 0;
-  private startTime: Date = new Date();
   private status: MatchStatus = "active";
 
   /**
@@ -27,23 +26,20 @@ export class Match {
   public createId = (localId: string, visitorId: string) =>
     `${localId}-${visitorId}`;
 
+  public getId = () => this.id;
+
   public getLocal = () => this.local;
 
   public getVisitor = () => this.visitor;
 
-  public returnInfo = () => ({
-    id: this.id,
-    local: this.local,
-    localScore: this.localScore,
-    visitor: this.visitor,
-    visitorScore: this.visitorScore,
-    startTime: this.startTime,
-    status: this.status,
-  });
-
-  public getId = () => this.id;
-
   public getStatus = () => this.status;
+
+  private setStatus = (status: MatchStatus) => (this.status = status);
+
+  public finishMatch = () => {
+    this.setStatus("finish");
+    return this;
+  };
 
   public getScore = () => ({
     local: this.localScore,
@@ -81,11 +77,4 @@ export class Match {
    */
   public getTotalAmountOfGoals = (): number =>
     this.localScore + this.visitorScore;
-
-  private setStatus = (status: MatchStatus) => (this.status = status);
-
-  public finishMatch = () => {
-    this.setStatus("finish");
-    return this;
-  };
 }

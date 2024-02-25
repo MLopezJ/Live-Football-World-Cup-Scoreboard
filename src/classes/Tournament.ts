@@ -12,10 +12,18 @@ export class Tournament {
     this.name = name;
   }
 
+  public getName = () => this.name;
+
   public addTeam = (team: Team): this => {
     this.teams.push(team);
     return this;
   };
+
+  /**
+   * Find match by id in list of matches
+   */
+  public getTeam = (teamId: string): Team | undefined =>
+    this.teams.find((team) => team.getId() === teamId);
 
   /**
    * Add a match to list of matches if:
@@ -98,12 +106,6 @@ export class Tournament {
     );
 
   /**
-   * Find match by id in list of matches
-   */
-  public getTeam = (teamId: string): Team | undefined =>
-    this.teams.find((team) => team.getId() === teamId);
-
-  /**
    * return matches following the next rules:
    * - return the matches that are being played
    * - return the matches sorted in ascending order by match score
@@ -118,6 +120,4 @@ export class Tournament {
       )
       .reverse()
       .map((match) => ({ matchId: match.getId(), result: match.printScore() }));
-
-  public getName = () => this.name;
 }
