@@ -61,7 +61,7 @@ worldCup.getMatch(CRC, NOR)?.setGoal(0, 1);
 console.log(worldCup.getLiveScoreboard()) // [CRC 1 - 1 NOR]
 
 // finish the match
-worldCup.finishMatch(`CRC-NOR`)
+worldCup.finishMatch(CRC, NOR)
 // print live scoreboard
 console.log(worldCup.getLiveScoreboard()) // []
 

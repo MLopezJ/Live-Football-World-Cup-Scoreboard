@@ -104,10 +104,9 @@ void describe(`finish match`, () => {
     worldCup.addMatch(local, visitor);
 
     // finish the match
-    const finishedMatch = worldCup.finishMatch(
-      `${local.getId()}-${visitor.getId()}`,
-    );
+    const finishedMatch = worldCup.finishMatch(local, visitor);
 
+    // TODO: improve this
     // check finished match status
     if (finishedMatch !== undefined) {
       assert.equal(finishedMatch.getStatus(), "finish");
@@ -150,7 +149,7 @@ void describe(`finish match`, () => {
     );
 
     // finish the match
-    worldCup.finishMatch(`${local.getId()}-${visitor.getId()}`);
+    worldCup.finishMatch(local, visitor);
 
     // match should not be in live scoreboard
     assert.equal(

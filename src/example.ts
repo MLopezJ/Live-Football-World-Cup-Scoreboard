@@ -73,8 +73,8 @@ printLiveScoreboard(worldCup.getLiveScoreboard());
 worldCup.getMatch(MEX, CAN)?.setGoal(0, 5);
 worldCup.getMatch(ESP, BRA)?.setGoal(10, 2);
 worldCup.getMatch(DEU, FRA)?.setGoal(2, 2);
+worldCup.getMatch(URY, ITA)?.setGoal(6, 6);
 worldCup.getMatch(ARG, AUS)?.setGoal(3, 1);
-const URY_ITA = worldCup.getMatch(URY, ITA)?.setGoal(6, 6);
 
 console.log(
   "-- Scores are beign updated. Check src/example.ts to get more information --\n",
@@ -83,7 +83,7 @@ console.log(
 printLiveScoreboard(worldCup.getLiveScoreboard());
 
 // end URY_ITA game
-URY_ITA?.finishMatch();
-console.log("-- Game ", URY_ITA?.getId(), " finished --\n");
+worldCup.finishMatch(URY, ITA);
+console.log("-- Game URY vs ITA finished --\n");
 
 printLiveScoreboard(worldCup.getLiveScoreboard());

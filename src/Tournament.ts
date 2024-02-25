@@ -77,14 +77,14 @@ export class Tournament {
   };
 
   /**
-   * TODO: finish match following getMatch example with params
+   * Finish a match
    */
-  public finishMatch = (matchId: string): Match | undefined => {
-    const match = this.matches.find((match) => match.getId() === matchId); // TODO: use getMatch
+  public finishMatch = (local: Team, visitor: Team): Match | undefined => {
+    const match = this.getMatch(local, visitor);
     if (match !== undefined) {
       return match.finishMatch();
     }
-    console.log(`Match with id ${matchId} not found`);
+    console.log(`Match ${local.getId()} vs ${visitor.getId()} not found`);
     return undefined;
   };
 
