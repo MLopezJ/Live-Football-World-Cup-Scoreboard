@@ -112,10 +112,7 @@ void describe(`Tournament`, () => {
       worldCup.addMatch(NOR, SWE);
 
       // expect live scoreboard does not have NOR vs SWE
-      assert.equal(
-        worldCup.getMatch(`${NOR.getId()}-${SWE.getId()}`),
-        undefined,
-      );
+      assert.equal(worldCup.getMatch(NOR, SWE), undefined);
     });
   });
 });

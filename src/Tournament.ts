@@ -87,11 +87,12 @@ export class Tournament {
 
   /**
    * Find match by id in list of matches
-   *
-   * TODO: update parameter. Ask for team ids instead of match id.
    */
-  public getMatch = (matchId: string): Match | undefined =>
-    this.matches.find((match) => match.getId() === matchId);
+  public getMatch = (local: Team, visitor: Team): Match | undefined =>
+    this.matches.find(
+      (match) =>
+        match.getId() === match.createId(local.getId(), visitor.getId()),
+    );
 
   /**
    * Find match by id in list of matches

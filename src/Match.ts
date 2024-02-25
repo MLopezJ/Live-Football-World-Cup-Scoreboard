@@ -19,10 +19,13 @@ export class Match {
     if (local.getId() === visitor.getId()) {
       throw Error("id of local and visitor can not be the same");
     }
-    this.id = `${local.getId()}-${visitor.getId()}`;
+    this.id = this.createId(local.getId(), visitor.getId());
     this.local = local;
     this.visitor = visitor;
   }
+
+  public createId = (localId: string, visitorId: string) =>
+    `${localId}-${visitorId}`;
 
   public getLocal = () => this.local;
 
