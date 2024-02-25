@@ -89,11 +89,8 @@ void describe(`Tournament`, () => {
       // add matchs
       worldCup.addMatch(CRC, NOR);
 
-      // expect throw an error
-
       // expect live scoreboard does not have it
       assert.equal(worldCup.getLiveScoreboard().length, 0);
-      
     });
   });
 });
