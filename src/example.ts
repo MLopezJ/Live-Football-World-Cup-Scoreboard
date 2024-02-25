@@ -1,33 +1,21 @@
-import { Team, Tournament } from "./index";
-import { printLiveScoreboard } from "./printLiveScoreboard";
+import { Tournament } from "./index";
+import { printLiveScoreboard } from "./utils/printLiveScoreboard";
 
 // create tournament
 const worldCup = new Tournament("Fifa World Cup 2024");
 console.log(`-- Tournament ${worldCup.getName()}  --\n`);
 
-/**
- * Create teams:
- *  - Mexico
- *  - Canada
- *  - Spain
- *  - Brazil
- *  - Germany
- *  - France
- *  - Uruguay
- *  - Italy
- *  - Argentina
- *  - Australia
- */
-const MEX = new Team("MEX");
-const CAN = new Team("CAN");
-const ESP = new Team("ESP");
-const BRA = new Team("BRA");
-const DEU = new Team("DEU");
-const FRA = new Team("FRA");
-const URY = new Team("URY");
-const ITA = new Team("ITA");
-const ARG = new Team("ARG");
-const AUS = new Team("AUS");
+// Create teams:
+const MEX = worldCup.createTeam("MEX"); // Mexico
+const CAN = worldCup.createTeam("CAN"); // Canada
+const ESP = worldCup.createTeam("ESP"); // Spain
+const BRA = worldCup.createTeam("BRA"); // Brazil
+const DEU = worldCup.createTeam("DEU"); // Germany
+const FRA = worldCup.createTeam("FRA"); // France
+const URY = worldCup.createTeam("URY"); // Uruguay
+const ITA = worldCup.createTeam("ITA"); // Italy
+const ARG = worldCup.createTeam("ARG"); // Argentina
+const AUS = worldCup.createTeam("AUS"); // Australia
 
 // Register teams in the tournament
 worldCup
@@ -42,22 +30,14 @@ worldCup
   .addTeam(ARG)
   .addTeam(AUS);
 
+// Matches:
 console.log("-- starting matches   --\n");
-/**
- * Matches:
- * - MEX vs CAN
- * - ESP vs BRA
- * - DEU vs FRA
- * - URY vs ITA
- * - ARG vs AUS
- */
 worldCup
-  .addMatch(MEX, CAN)
-  .addMatch(ESP, BRA)
-  .addMatch(DEU, FRA)
-  .addMatch(URY, ITA)
-  .addMatch(ARG, AUS);
-
+  .addMatch(MEX, CAN) // MEX vs CAN
+  .addMatch(ESP, BRA) // ESP vs BRA
+  .addMatch(DEU, FRA) // DEU vs FRA
+  .addMatch(URY, ITA) // URY vs ITA
+  .addMatch(ARG, AUS); // ARG vs AUS
 printLiveScoreboard(worldCup.getLiveScoreboard());
 
 // Update scores
@@ -66,15 +46,11 @@ worldCup.getMatch(ESP, BRA)?.setGoal(10, 2);
 worldCup.getMatch(DEU, FRA)?.setGoal(2, 2);
 worldCup.getMatch(URY, ITA)?.setGoal(6, 6);
 worldCup.getMatch(ARG, AUS)?.setGoal(3, 1);
-
 console.log(
   "-- Scores are beign updated. Check src/example.ts to get more information --\n",
 );
-
 printLiveScoreboard(worldCup.getLiveScoreboard());
 
-// end URY_ITA game
-worldCup.finishMatch(URY, ITA);
+worldCup.finishMatch(URY, ITA); // end URY vs ITA game
 console.log("-- Game URY vs ITA finished --\n");
-
 printLiveScoreboard(worldCup.getLiveScoreboard());

@@ -1,4 +1,4 @@
-import { type liveScoreboard } from "./Tournament";
+import { type liveScoreboard } from "../classes/Tournament";
 
 /**
  * Helper function to log the live scorerboard in the console

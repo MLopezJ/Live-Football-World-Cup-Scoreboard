@@ -1,7 +1,8 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { Team, Tournament } from "./index";
-import type { liveScoreboard, Match } from "./index";
+import { Tournament } from "./index";
+import { type liveScoreboard } from "./classes/Tournament";
+import type { Match } from "./classes/Match";
 
 void describe(`start a new match`, () => {
   it(`should start a new match with score 0 for the local team and 0 for the visitor team`, async () => {
@@ -9,8 +10,8 @@ void describe(`start a new match`, () => {
     const worldCup = new Tournament("Fifa World Cup 2024");
 
     // create teams
-    const local = new Team("CRC");
-    const visitor = new Team("NOR");
+    const local = worldCup.createTeam("CRC");
+    const visitor = worldCup.createTeam("NOR");
 
     // add teams to the tournament
     worldCup.addTeam(local).addTeam(visitor);
@@ -33,8 +34,8 @@ void describe(`start a new match`, () => {
     const worldCup = new Tournament("Fifa World Cup 2024");
 
     // create teams
-    const local = new Team("CRC");
-    const visitor = new Team("NOR");
+    const local = worldCup.createTeam("CRC");
+    const visitor = worldCup.createTeam("NOR");
 
     // add teams to the tournament
     worldCup.addTeam(local).addTeam(visitor);
@@ -57,8 +58,8 @@ void describe(`update score`, () => {
     const worldCup = new Tournament("Fifa World Cup 2024");
 
     // create teams
-    const local = new Team("CRC");
-    const visitor = new Team("NOR");
+    const local = worldCup.createTeam("CRC");
+    const visitor = worldCup.createTeam("NOR");
 
     // add teams to the tournament
     worldCup.addTeam(local).addTeam(visitor);
@@ -93,8 +94,8 @@ void describe(`finish match`, () => {
     const worldCup = new Tournament("Fifa World Cup 2024");
 
     // create teams
-    const local = new Team("CRC");
-    const visitor = new Team("NOR");
+    const local = worldCup.createTeam("CRC");
+    const visitor = worldCup.createTeam("NOR");
 
     // add teams to the tournament
     worldCup.addTeam(local).addTeam(visitor);
@@ -131,8 +132,8 @@ void describe(`finish match`, () => {
     const worldCup = new Tournament("Fifa World Cup 2024");
 
     // create teams
-    const local = new Team("CRC");
-    const visitor = new Team("NOR");
+    const local = worldCup.createTeam("CRC");
+    const visitor = worldCup.createTeam("NOR");
 
     // add teams to the tournament
     worldCup.addTeam(local).addTeam(visitor);
@@ -164,12 +165,12 @@ void describe(`Get a summary of matches in progress`, () => {
     const worldCup = new Tournament("Fifa World Cup 2024");
 
     // Create teams
-    const crc = new Team("CRC"); // Costa Rica
-    const nor = new Team("NOR"); // Norway
-    const bra = new Team("BRA"); // Brazil
-    const arg = new Team("ARG"); // Argentina
-    const ita = new Team("ITA"); // Italy
-    const esp = new Team("ESP"); // Spain
+    const crc = worldCup.createTeam("CRC"); // Costa Rica
+    const nor = worldCup.createTeam("NOR"); // Norway
+    const bra = worldCup.createTeam("BRA"); // Brazil
+    const arg = worldCup.createTeam("ARG"); // Argentina
+    const ita = worldCup.createTeam("ITA"); // Italy
+    const esp = worldCup.createTeam("ESP"); // Spain
 
     // add teams to the tournament
     worldCup
@@ -206,12 +207,12 @@ void describe(`Get a summary of matches in progress`, () => {
     const worldCup = new Tournament("Fifa World Cup 2024");
 
     // Create teams
-    const crc = new Team("CRC"); // Costa Rica
-    const nor = new Team("NOR"); // Norway
-    const bra = new Team("BRA"); // Brazil
-    const arg = new Team("ARG"); // Argentina
-    const ita = new Team("ITA"); // Italy
-    const esp = new Team("ESP"); // Spain
+    const crc = worldCup.createTeam("CRC"); // Costa Rica
+    const nor = worldCup.createTeam("NOR"); // Norway
+    const bra = worldCup.createTeam("BRA"); // Brazil
+    const arg = worldCup.createTeam("ARG"); // Argentina
+    const ita = worldCup.createTeam("ITA"); // Italy
+    const esp = worldCup.createTeam("ESP"); // Spain
 
     // add teams to the tournament
     worldCup
@@ -222,7 +223,7 @@ void describe(`Get a summary of matches in progress`, () => {
       .addTeam(ita) // Italy
       .addTeam(esp); // Spain
 
-    // create the match           local - visitor
+    // create the match    local - visitor
     worldCup
       .addMatch(crc, nor) // CRC vs NOR
       .addMatch(bra, arg) // BRA vs ARG
