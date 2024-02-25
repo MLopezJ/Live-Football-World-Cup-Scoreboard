@@ -31,30 +31,37 @@ See [./src/index.spec.ts](./src/index.spec.ts) for more information.
 # Example of usage
 
 ```TypeScript
+import { Team } from "./Team";
+import { Tournament } from "./Tournament";
+
 // create tournament
 const worldCup = new Tournament("Fifa World Cup 2024");
 
-// add teams to the tournament
-const crc = worldCup.addTeam(new Team("CRC")); // Costa Rica
-const nor = worldCup.addTeam(new Team("NOR")); // Norway
+// create teams
+const CRC = new Team("CRC"); // Costa Rica
+const NOR = new Team("NOR"); // Norway
 
-// create match                                local - visitor
-const CRCvsNOR = worldCup.addMatch(crc, nor); // CRC vs NOR
+// add teams to the tournament
+worldCup.addTeam(CRC).addTeam(NOR);
+
+// create match                local - visitor
+worldCup.addMatch(CRC, NOR); // CRC vs NOR
+
 // print live scoreboard
 console.log(worldCup.getLiveScoreboard()) // [CRC 0 - 0 NOR]
 
 // Goal: CRC 1 - 0 NOR
-CRCvsNOR?.setGoal(1, 0);
+worldCup.getMatch(CRC, NOR)?.setGoal(1, 0);
 // print live scoreboard
 console.log(worldCup.getLiveScoreboard()) // [CRC 1 - 0 NOR]
 
 // Goal: CRC 1 - 1 NOR
-CRCvsNOR?.setGoal(1, 1);
+worldCup.getMatch(CRC, NOR)?.setGoal(0, 1);
 // print live scoreboard
 console.log(worldCup.getLiveScoreboard()) // [CRC 1 - 1 NOR]
 
 // finish the match
-const finishedMatch = worldCup.finishMatch(`CRC-NOR`)
+worldCup.finishMatch(`CRC-NOR`)
 // print live scoreboard
 console.log(worldCup.getLiveScoreboard()) // []
 
