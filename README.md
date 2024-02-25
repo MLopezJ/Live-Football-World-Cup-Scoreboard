@@ -31,8 +31,7 @@ See [./src/index.spec.ts](./src/index.spec.ts) for more information.
 # Example of usage
 
 ```TypeScript
-import { Team } from "./Team";
-import { Tournament } from "./Tournament";
+import { Team, Tournament } from "./src/index";
 
 // create tournament
 const worldCup = new Tournament("Fifa World Cup 2024");
