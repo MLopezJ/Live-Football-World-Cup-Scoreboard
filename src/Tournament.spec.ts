@@ -92,5 +92,30 @@ void describe(`Tournament`, () => {
       // expect live scoreboard does not have it
       assert.equal(worldCup.getLiveScoreboard().length, 0);
     });
+
+    void it(`should not crate match if one of the teams has an active match`, () => {
+      // create tournament
+      const worldCup = new Tournament("Fifa World Cup 2024");
+
+      // create teams
+      const CRC = new Team("CRC");
+      const NOR = new Team("NOR");
+      const SWE = new Team("SWE");
+
+      // register teams in tournament
+      worldCup.addTeam(CRC);
+      worldCup.addTeam(NOR);
+      worldCup.addTeam(SWE);
+
+      // add matchs
+      worldCup.addMatch(CRC, NOR);
+      worldCup.addMatch(NOR, SWE);
+
+      // expect live scoreboard does not have NOR vs SWE
+      assert.equal(
+        worldCup.getMatch(`${NOR.getId()}-${SWE.getId()}`),
+        undefined,
+      );
+    });
   });
 });
