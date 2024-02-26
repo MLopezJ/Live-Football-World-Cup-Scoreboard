@@ -105,19 +105,9 @@ void describe(`finish match`, () => {
 
     // finish the match
     const finishedMatch = worldCup.finishMatch(local, visitor);
-
-    // TODO: improve this
-    // check finished match status
-    if (finishedMatch !== undefined) {
-      assert.equal(finishedMatch.getStatus(), "finish");
-    } else {
-      // if finishedMatch is undefined means that the match id is not found, and is not possible to finish it. Because of that, it should fail
-      assert.equal(
-        (finishedMatch as unknown as Match).getId(),
-        `${local.getId()}-${visitor.getId()}`,
-      );
-    }
+    assert.equal(finishedMatch?.getStatus(), "finish");
   });
+
   it(`should not display match in live scoreboard when match finished`, () => {
     // Check if match id is in list
     const isMatchInLiveScoreboard = (
