@@ -6,7 +6,8 @@
   "scripts": {
     "test": "find ./ -type f -name '*.spec.ts' -not -path './node_modules/*' -print | xargs npx tsx --no-warnings --test",
     "prepare": "husky",
-    "prepublishOnly": "npx swc -d dist ./src --copy-files"
+    "prepublishOnly": "npx swc -d dist ./src --copy-files",
+    "example": "npx tsx ./src/example.ts"
   },
   "type": "module",
   "types": "./index.d.ts",

@@ -81,7 +81,10 @@ try {
 
 ```
 
-See [./src/example.ts](./src/example.ts) for an example with more teams
+See [./src/example.ts](./src/example.ts) for an example with more teams. Run the following command to execute [./src/example.ts](./src/example.ts) :
+```
+npm run example
+```
 
 # UML class diagram
 
