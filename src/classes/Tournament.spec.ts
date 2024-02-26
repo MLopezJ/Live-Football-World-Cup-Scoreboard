@@ -116,8 +116,8 @@ void describe(`Tournament`, () => {
       // register teams in tournament
       worldCup.addTeam(CRC);
 
-      // add matchs
-      worldCup.addMatch(CRC, NOR);
+      // add match
+      assert.throws(() => worldCup.addMatch(CRC, NOR), Error);
 
       // expect live scoreboard does not have it
       assert.equal(worldCup.getLiveScoreboard().length, 0);
@@ -139,7 +139,7 @@ void describe(`Tournament`, () => {
 
       // add matchs
       worldCup.addMatch(CRC, NOR);
-      worldCup.addMatch(NOR, SWE);
+      assert.throws(() => worldCup.addMatch(NOR, SWE), Error);
 
       // expect live scoreboard does not have NOR vs SWE
       assert.equal(worldCup.getMatch(NOR, SWE), undefined);

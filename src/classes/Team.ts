@@ -1,12 +1,20 @@
+export class TeamError extends Error {
+  id: string;
+  standard = "https://www.iso.org/obp/ui/#search";
+
+  constructor(id: string) {
+    super(
+      `team with id ${id} can not be created. Id must follow ISO 3166-1 alfa-3 standard`,
+    );
+    this.id = id;
+  }
+}
+
 export class Team {
   private id: string;
 
   constructor(id: string) {
-    if (this.hasISO3166Format(id) === false) {
-      throw Error(
-        `team with id ${id} can not be created. Id must follow ISO 3166-1 alfa-3 standard`,
-      );
-    }
+    if (this.hasISO3166Format(id) === false) throw new TeamError(id);
     this.id = id.toUpperCase();
   }
 

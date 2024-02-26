@@ -31,38 +31,53 @@ See [./src/index.spec.ts](./src/index.spec.ts) for more information.
 # Example of usage
 
 ```TypeScript
-import { Tournament } from "./src/index";
+import { MatchError, TeamError, Tournament, TournamentError } from "./src/index";
 
-// create tournament
-const worldCup = new Tournament("Fifa World Cup 2024");
+try {
+  // create tournament
+  const worldCup = new Tournament("Fifa World Cup 2024");
 
-// create teams
-const CRC = worldCup.createTeam("CRC");
-const NOR = worldCup.createTeam("NOR");
+  // create teams
+  const CRC = worldCup.createTeam("CRC");
+  const NOR = worldCup.createTeam("NOR");
 
-// add teams to the tournament
-worldCup.addTeam(CRC).addTeam(NOR);
+  // add teams to the tournament
+  worldCup.addTeam(CRC).addTeam(NOR);
 
-// create match                local - visitor
-worldCup.addMatch(CRC, NOR); // CRC vs NOR
+  // create match                local - visitor
+  worldCup.addMatch(CRC, NOR); // CRC vs NOR
 
-// print live scoreboard
-console.log(worldCup.liveScoreboard) // [CRC 0 - 0 NOR]
+  // print live scoreboard
+  console.log(worldCup.liveScoreboard); // [CRC 0 - 0 NOR]
 
-// Goal: CRC 1 - 0 NOR
-worldCup.getMatch(CRC, NOR)?.setGoal(1, 0);
-// print live scoreboard
-console.log(worldCup.liveScoreboard) // [CRC 1 - 0 NOR]
+  // Goal: CRC 1 - 0 NOR
+  worldCup.getMatch(CRC, NOR)?.setGoal(1, 0);
+  // print live scoreboard
+  console.log(worldCup.liveScoreboard); // [CRC 1 - 0 NOR]
 
-// Goal: CRC 1 - 1 NOR
-worldCup.getMatch(CRC, NOR)?.setGoal(0, 1);
-// print live scoreboard
-console.log(worldCup.liveScoreboard) // [CRC 1 - 1 NOR]
+  // Goal: CRC 1 - 1 NOR
+  worldCup.getMatch(CRC, NOR)?.setGoal(0, 1);
+  // print live scoreboard
+  console.log(worldCup.liveScoreboard); // [CRC 1 - 1 NOR]
 
-// finish the match
-worldCup.finishMatch(CRC, NOR)
-// print live scoreboard
-console.log(worldCup.liveScoreboard) // []
+  // finish the match
+  worldCup.finishMatch(CRC, NOR);
+  // print live scoreboard
+  console.log(worldCup.liveScoreboard); // []
+} catch (error) {
+  if (error instanceof TeamError) {
+    console.log(error);
+    // manage your error here
+  }
+  if (error instanceof MatchError) {
+    console.log(error);
+    // manage your error here
+  }
+  if (error instanceof TournamentError) {
+    console.log(error);
+    // manage your error here
+  }
+}
 
 ```
 

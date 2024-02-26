@@ -2,6 +2,17 @@ import type { Team } from "./Team";
 
 type MatchStatus = "active" | "finish";
 
+export class MatchError extends Error {
+  local: Team;
+  visitor: Team;
+
+  constructor({ local, visitor }: { local: Team; visitor: Team }) {
+    super(`id of local and visitor can not be the same.`);
+    this.local = local;
+    this.visitor = visitor;
+  }
+}
+
 export class Match {
   private id: string;
   private local: Team;
@@ -15,11 +26,9 @@ export class Match {
    *    - teams ids must be different
    */
   constructor(local: Team, visitor: Team) {
-    if (local.getId() === visitor.getId()) {
-      throw Error(
-        `id of local and visitor can not be the same. Local:${local.getId()} - Visitor: ${visitor.getId()}`,
-      );
-    }
+    if (local.getId() === visitor.getId())
+      throw new MatchError({ local, visitor });
+
     this.id = this.createId(local.getId(), visitor.getId());
     this.local = local;
     this.visitor = visitor;

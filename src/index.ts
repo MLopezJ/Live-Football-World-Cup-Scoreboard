@@ -57,3 +57,7 @@ export class Tournament {
     return this.tournament.getLiveScoreboard();
   }
 }
+
+export { MatchError } from "./classes/Match";
+export { TeamError } from "./classes/Team";
+export { TournamentError } from "./classes/Tournament";

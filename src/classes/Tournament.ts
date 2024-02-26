@@ -3,6 +3,29 @@ import type { Team } from "./Team";
 
 export type liveScoreboard = { matchId: string; result: string };
 
+export class TournamentError extends Error {
+  teams: Team[];
+  team: Team;
+  matches: Match[];
+
+  constructor({
+    teams,
+    team,
+    matches,
+    message,
+  }: {
+    teams: Team[];
+    team: Team;
+    matches: Match[];
+    message: string;
+  }) {
+    super(message);
+    this.teams = teams;
+    this.team = team;
+    this.matches = matches;
+  }
+}
+
 export class Tournament {
   private name: string;
   private teams: Team[] = [];
@@ -34,24 +57,27 @@ export class Tournament {
    * Please check Match class to check class constraints
    */
   public addMatch = (localTeam: Team, visitorTeam: Team): this => {
-    // check teams are register in teams list
-    const teamNotRegister = (team: string, id: string) =>
-      `${team} team is not register in the tournament teams list. Team id: ${id}`;
-
+    // check local team is register in tournament's teams list
     if (this.getTeam(localTeam.getId()) === undefined) {
-      console.error(new Error(teamNotRegister("Local", localTeam.getId())));
-      return this;
+      throw new TournamentError({
+        team: localTeam,
+        teams: this.teams,
+        matches: this.matches,
+        message: "team is not register in the tournament's teams list.",
+      });
     }
 
+    // check visitor team is register in tournament's teams list
     if (this.getTeam(visitorTeam.getId()) === undefined) {
-      console.error(new Error(teamNotRegister("Visitor", visitorTeam.getId())));
-      return this;
+      throw new TournamentError({
+        team: visitorTeam,
+        teams: this.teams,
+        matches: this.matches,
+        message: "team is not register in the tournament's teams list.",
+      });
     }
 
-    // check teams have not active matches
-    const activeMatch = (team: string, id: string) =>
-      `${team} team has an active game in this moment in the tournament. Team id: ${id}`;
-
+    // check local team has not active matches
     if (
       this.matches.some(
         (match) =>
@@ -59,10 +85,15 @@ export class Tournament {
           match.getVisitor().getId() === localTeam.getId(),
       ) === true
     ) {
-      console.error(new Error(activeMatch("Local", localTeam.getId())));
-      return this;
+      throw new TournamentError({
+        team: localTeam,
+        teams: this.teams,
+        matches: this.matches,
+        message: "team has an active game in this moment in the tournament",
+      });
     }
 
+    // check visitor team has not active matches
     if (
       this.matches.some(
         (match) =>
@@ -70,10 +101,15 @@ export class Tournament {
           match.getVisitor().getId() === visitorTeam.getId(),
       ) === true
     ) {
-      console.error(new Error(activeMatch("Visitor", visitorTeam.getId())));
-      return this;
+      throw new TournamentError({
+        team: visitorTeam,
+        teams: this.teams,
+        matches: this.matches,
+        message: "team has an active game in this moment in the tournament",
+      });
     }
 
+    // create match
     const match = new Match(localTeam, visitorTeam);
     this.matches.push(match);
     return this;
