@@ -1,4 +1,4 @@
-# ADR 008: Use of Facade
+# APPDR 008: Use of Facade
 
 With the intention of provide a simple library interface, the `facade` structural design pattern was implemented.
 

@@ -1,4 +1,4 @@
-# ADR 004: Relationships between classes
+# APPDR 004: Relationships between classes
 
 In Object Oriented Programming, there are many different types of relationships which can exist between two or more classes. Association is the type of relationship that refers as `X has a Y`. At the same time, there are two types of associations: Aggregation and Composition.
 

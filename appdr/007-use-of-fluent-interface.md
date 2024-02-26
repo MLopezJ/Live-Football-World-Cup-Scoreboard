@@ -1,4 +1,4 @@
-# ADR 007: Use of Fluent Interface
+# APPDR 007: Use of Fluent Interface
 
 `Fluent Interface` is used to create an easy-to-read and understandable API, the implementation of it allows developers to write instructions that reads like a sentence in a natural language, like in JavaScript array functions when chain functions as following:
 
