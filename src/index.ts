@@ -12,9 +12,11 @@ export class Tournament {
   }
 
   /**
-   * Get name of Tournament class
+   * Get name of Tournament
    */
-  public getName = () => this.tournament.getName();
+  public get name() {
+    return this.tournament.getName();
+  }
 
   /**
    * Create an object of Team class.
@@ -51,5 +53,7 @@ export class Tournament {
   /**
    * Get live matches from Tournament
    */
-  public getLiveScoreboard = () => this.tournament.getLiveScoreboard();
+  public get liveScoreboard() {
+    return this.tournament.getLiveScoreboard();
+  }
 }

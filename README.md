@@ -47,22 +47,22 @@ worldCup.addTeam(CRC).addTeam(NOR);
 worldCup.addMatch(CRC, NOR); // CRC vs NOR
 
 // print live scoreboard
-console.log(worldCup.getLiveScoreboard()) // [CRC 0 - 0 NOR]
+console.log(worldCup.liveScoreboard) // [CRC 0 - 0 NOR]
 
 // Goal: CRC 1 - 0 NOR
 worldCup.getMatch(CRC, NOR)?.setGoal(1, 0);
 // print live scoreboard
-console.log(worldCup.getLiveScoreboard()) // [CRC 1 - 0 NOR]
+console.log(worldCup.liveScoreboard) // [CRC 1 - 0 NOR]
 
 // Goal: CRC 1 - 1 NOR
 worldCup.getMatch(CRC, NOR)?.setGoal(0, 1);
 // print live scoreboard
-console.log(worldCup.getLiveScoreboard()) // [CRC 1 - 1 NOR]
+console.log(worldCup.liveScoreboard) // [CRC 1 - 1 NOR]
 
 // finish the match
 worldCup.finishMatch(CRC, NOR)
 // print live scoreboard
-console.log(worldCup.getLiveScoreboard()) // []
+console.log(worldCup.liveScoreboard) // []
 
 ```
 

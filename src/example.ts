@@ -3,7 +3,7 @@ import { printLiveScoreboard } from "./utils/printLiveScoreboard";
 
 // create tournament
 const worldCup = new Tournament("Fifa World Cup 2024");
-console.log(`-- Tournament ${worldCup.getName()}  --\n`);
+console.log(`-- Tournament ${worldCup.name}  --\n`);
 
 // Create teams:
 const MEX = worldCup.createTeam("MEX"); // Mexico
@@ -38,7 +38,7 @@ worldCup
   .addMatch(DEU, FRA) // DEU vs FRA
   .addMatch(URY, ITA) // URY vs ITA
   .addMatch(ARG, AUS); // ARG vs AUS
-printLiveScoreboard(worldCup.getLiveScoreboard());
+printLiveScoreboard(worldCup.liveScoreboard);
 
 // Update scores
 worldCup.getMatch(MEX, CAN)?.setGoal(0, 5);
@@ -47,10 +47,10 @@ worldCup.getMatch(DEU, FRA)?.setGoal(2, 2);
 worldCup.getMatch(URY, ITA)?.setGoal(6, 6);
 worldCup.getMatch(ARG, AUS)?.setGoal(3, 1);
 console.log(
-  "-- Scores are beign updated. Check src/example.ts to get more information --\n",
+  "-- Scores are beign updated. Check src/example.ts to get more information --\n"
 );
-printLiveScoreboard(worldCup.getLiveScoreboard());
+printLiveScoreboard(worldCup.liveScoreboard);
 
 worldCup.finishMatch(URY, ITA); // end URY vs ITA game
 console.log("-- Game URY vs ITA finished --\n");
-printLiveScoreboard(worldCup.getLiveScoreboard());
+printLiveScoreboard(worldCup.liveScoreboard);
