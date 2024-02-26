@@ -7,7 +7,7 @@ export class Team {
         `team with id ${id} can not be created. Id must follow ISO 3166-1 alfa-3 standard`,
       );
     }
-    this.id = id;
+    this.id = id.toUpperCase();
   }
 
   /**
