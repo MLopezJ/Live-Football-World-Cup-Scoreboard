@@ -80,7 +80,6 @@ export class Match {
     }
 
     return this;
-    //return this.getScore();
   };
 
   /**
