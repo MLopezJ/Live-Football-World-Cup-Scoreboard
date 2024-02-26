@@ -2,7 +2,6 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { Tournament } from "./index";
 import { type liveScoreboard } from "./classes/Tournament";
-import type { Match } from "./classes/Match";
 
 void describe(`start a new match`, () => {
   it(`should start a new match with score 0 for the local team and 0 for the visitor team`, async () => {
