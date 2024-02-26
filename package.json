@@ -37,6 +37,17 @@
     "node": ">=20",
     "npm": ">=9"
   },
+  "release": {
+    "branches": [
+      "saga"
+    ],
+    "remoteTags": true,
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github"
+    ]
+  },
   "devDependencies": {
     "@commitlint/config-conventional": "18.4.3",
     "@types/node": "20.10.2",

@@ -1,6 +1,7 @@
 # Live Football World Cup Scoreboard
 
-![Unit Tests](https://github.com/MLopezJ/Live-Football-World-Cup-Scoreboard/actions/workflows/test.yaml/badge.svg)
+![Unit Tests](https://github.com/MLopezJ/Live-Football-World-Cup-Scoreboard/actions/workflows/test-and-release.yaml/badge.svg)
+[![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
 A Live Football World Cup Scoreboard library that shows all the ongoing matches and their scores.

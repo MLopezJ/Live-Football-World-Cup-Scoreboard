@@ -1,4 +1,4 @@
-name: Test
+name: Test and Release
 
 on:
   push:
@@ -35,3 +35,8 @@ jobs:
 
       - name: Run example
         run: npx tsx src/example.ts
+
+      - name: Semantic release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
