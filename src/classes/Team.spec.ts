@@ -16,6 +16,7 @@ void describe(`Team`, () => {
       ["###"],
       ["222"],
       ["ITALY"],
+      ["NEW ZELAND"],
     ] as [string][]) {
       void it(`should not create a team if id doesnt follow ISO 3166-1 alfa-3 standard. Token: ${token}`, () => {
         assert.throws(() => new Team(token), Error);
@@ -26,6 +27,18 @@ void describe(`Team`, () => {
       void it(`should create a team when id follow ISO 3166-1 alfa-3 standard. Token: ${token}`, () => {
         const team = new Team(token);
         assert.equal(team.getId(), token);
+      });
+    }
+
+    for (const [id, expected] of [
+      ["crc", "CRC"],
+      ["NoR", "NOR"],
+      ["Bra", "BRA"],
+      ["itA", "ITA"],
+    ] as [string, string][]) {
+      void it(`should create id of team with capital letters. id: ${id}. expected: ${expected}`, () => {
+        const team = new Team(id);
+        assert.equal(team.getId(), expected);
       });
     }
   });
