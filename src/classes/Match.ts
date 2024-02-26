@@ -16,7 +16,9 @@ export class Match {
    */
   constructor(local: Team, visitor: Team) {
     if (local.getId() === visitor.getId()) {
-      throw Error("id of local and visitor can not be the same");
+      throw Error(
+        `id of local and visitor can not be the same. Local:${local.getId()} - Visitor: ${visitor.getId()}`,
+      );
     }
     this.id = this.createId(local.getId(), visitor.getId());
     this.local = local;

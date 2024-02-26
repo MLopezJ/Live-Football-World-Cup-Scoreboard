@@ -74,14 +74,9 @@ export class Tournament {
       return this;
     }
 
-    try {
-      const match = new Match(localTeam, visitorTeam);
-      this.matches.push(match);
-      return this;
-    } catch (error) {
-      console.log(error);
-      return this;
-    }
+    const match = new Match(localTeam, visitorTeam);
+    this.matches.push(match);
+    return this;
   };
 
   /**

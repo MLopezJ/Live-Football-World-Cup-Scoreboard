@@ -105,7 +105,7 @@ void describe(`Tournament`, () => {
   });
 
   void describe(`Teams`, () => {
-    void it(`should not crate match if team is not register in the tournament`, () => {
+    void it(`should not create match if team is not register in the tournament`, () => {
       // create tournament
       const worldCup = new Tournament("Fifa World Cup 2024");
 
@@ -123,7 +123,7 @@ void describe(`Tournament`, () => {
       assert.equal(worldCup.getLiveScoreboard().length, 0);
     });
 
-    void it(`should not crate match if one of the teams has an active match`, () => {
+    void it(`should not create match if one of the teams has an active match`, () => {
       // create tournament
       const worldCup = new Tournament("Fifa World Cup 2024");
 
@@ -143,6 +143,20 @@ void describe(`Tournament`, () => {
 
       // expect live scoreboard does not have NOR vs SWE
       assert.equal(worldCup.getMatch(NOR, SWE), undefined);
+    });
+
+    void it(`should not create match if local and visitor are the same team`, () => {
+      // create tournament
+      const worldCup = new Tournament("Fifa World Cup 2024");
+
+      // create teams
+      const CRC = new Team("CRC");
+
+      // register teams in tournament
+      worldCup.addTeam(CRC);
+
+      // add match
+      assert.throws(() => worldCup.addMatch(CRC, CRC), Error);
     });
   });
 });
