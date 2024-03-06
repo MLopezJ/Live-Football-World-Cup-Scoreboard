@@ -4,7 +4,7 @@
   "description": "A Live Football World Cup Scoreboard library that shows all the ongoing matches and their scores.",
   "main": "index.js",
   "scripts": {
-    "test": "find ./ -type f -name '*.spec.ts' -not -path './node_modules/*' -print | xargs npx tsx --no-warnings --test",
+    "test": "find ./ -type f -name '*.spec.ts' -not -path './node_modules/*' -print | xargs npx tsx --no-warnings --test --experimental-test-coverage",
     "prepare": "husky",
     "prepublishOnly": "npx swc -d dist ./src --copy-files",
     "example": "npx tsx ./src/example.ts"
