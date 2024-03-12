@@ -151,4 +151,19 @@ export class Tournament {
       )
       .reverse()
       .map((match) => ({ matchId: match.getId(), result: match.printScore() }));
+
+  /**
+   * given a tournament, with  an active match,
+   * when I ask one of the team if it has an active match,
+   * then the system return a boolean with the result
+   */
+  public hasActiveMatch = (team: Team): boolean => {
+    return this.matches
+      .filter((match) => match.getStatus() === "active")
+      .some(
+        (element) =>
+          element.getLocal().getId() === team.getId() ||
+          element.getVisitor().getId() === team.getId(),
+      );
+  };
 }

@@ -219,3 +219,40 @@ void describe(`Get a summary of matches in progress`, () => {
     assert.equal(worldCup.liveScoreboard[0]?.matchId, "ITA-ESP");
   });
 });
+
+void describe("Check if team has an active match", () => {
+  it(`should return true if team has an active match`, () => {
+    // crete a tournamet
+    const worldCup = new Tournament("Fifa World Cup 2024");
+
+    // create teams
+    const local = worldCup.createTeam("CRC");
+    const visitor = worldCup.createTeam("NOR");
+
+    // add teams to the tournament
+    worldCup.addTeam(local).addTeam(visitor);
+    // create a match
+    worldCup.addMatch(local, visitor);
+
+    // check that the team has an active match
+    assert.equal(worldCup.hasActiveMatch(visitor), true);
+  });
+
+  it(`should return false if team has not an active match`, () => {
+    // crete a tournamet
+    const worldCup = new Tournament("Fifa World Cup 2024");
+
+    // create teams
+    const local = worldCup.createTeam("CRC");
+    const visitor = worldCup.createTeam("NOR");
+    const anotherTeam = worldCup.createTeam("BRA");
+
+    // add teams to the tournament
+    worldCup.addTeam(local).addTeam(visitor);
+    // create a match
+    worldCup.addMatch(local, visitor);
+
+    // check that the team has not an active match
+    assert.equal(worldCup.hasActiveMatch(anotherTeam), false);
+  });
+});

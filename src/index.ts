@@ -56,6 +56,12 @@ export class Tournament {
   public get liveScoreboard() {
     return this.tournament.getLiveScoreboard();
   }
+
+  /**
+   * Check if team has an active match
+   */
+  public hasActiveMatch = (team: Team): boolean =>
+    this.tournament.hasActiveMatch(team);
 }
 
 export { MatchError } from "./classes/Match";
